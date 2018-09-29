@@ -8,9 +8,9 @@ import View.PopUpKeluarView;
 public class PPLAgroC {
 
     public static void main(String[] args) {
-//        AwalView awal = new AwalView();
-//        UserModel userM = new UserModel();
-//        new UserController(awal, userM);
+        AwalView awal = new AwalView();
+        UserModel userM = new UserModel();
+        new UserController(awal, userM);
 
 
     }
