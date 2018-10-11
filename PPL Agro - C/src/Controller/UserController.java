@@ -26,6 +26,7 @@ public class UserController {
     TentangView tentang = new TentangView();
     MulaiView mulai = new MulaiView();
     PopUpKeluarView dialogKeluar;
+    boolean pindah = false;
 
     public UserController(AwalView awal, UserModel userM) {
         //Constructor untuk memanggil frame Awal
@@ -48,17 +49,116 @@ public class UserController {
         tentang.setVisible(true);
         tentang.KembaliMouseListener(new KembaliTentangMouseListenner());
     }
-    
+
     public UserController(MulaiView mulai, UserModel userM) {
         this.mulai = mulai;
         this.userM = userM;
         mulai.setVisible(true);
-       
+        mulai.getButton_hujantropis().setVisible(true);
+        mulai.getButton_hutanMusim().setVisible(false);
+        mulai.BackMouseListener(new BackMulaiMouseListener());
+        mulai.PrevMouseListener(new PrevMouseListener());
+        mulai.NextMouseListener(new NextMouseListener());
+
     }
 
     private void setIcon(JButton button, String resource) {
         //Method untuk mengganti icon button
         button.setIcon(new ImageIcon(getClass().getResource(resource)));
+    }
+
+    private class PrevMouseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            setIcon(mulai.getButton_hutanHujan(), "/View/MulaiUI/hujantropis_htm.png");
+            setIcon(mulai.getButton_HutanMusim(), "/View/MulaiUI/musim_brw.png");
+            mulai.getButton_hujantropis().setVisible(true);
+            mulai.getButton_hutanMusim().setVisible(false);
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+            setIcon(mulai.getButton_prev(), "/View/MulaiUI/LEFT2.png");
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+            setIcon(mulai.getButton_prev(), "/View/MulaiUI/LEFT.png");
+
+        }
+    }
+
+    private class NextMouseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            setIcon(mulai.getButton_HutanMusim(), "/View/MulaiUI/musim_htm.png");
+            setIcon(mulai.getButton_hutanHujan(), "/View/MulaiUI/hujantropis_brw.png");
+            mulai.getButton_hujantropis().setVisible(false);
+            mulai.getButton_hutanMusim().setVisible(true);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            setIcon(mulai.getButton_next(), "/View/MulaiUI/NEXT.png");
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            setIcon(mulai.getButton_next(), "/View/MulaiUI/RIGHT.png");
+        }
+    }
+
+    private class BackMulaiMouseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            new UserController(awal, userM);
+            mulai.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+            setIcon(mulai.getButton_Back(), "/View/TentangUI/BACK2.png");
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+            setIcon(mulai.getButton_Back(), "/View/TentangUI/BACK.png");
+        }
     }
 
     private class KembaliTentangMouseListenner implements MouseListener {
@@ -224,8 +324,8 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-        awal.dispose();
-        new UserController(mulai, userM);
+            awal.dispose();
+            new UserController(mulai, userM);
         }
 
         @Override

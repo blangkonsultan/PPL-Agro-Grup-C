@@ -5,6 +5,10 @@
  */
 package View;
 
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 /**
  *
  * @author adheraprabu
@@ -19,6 +23,100 @@ public class MulaiView extends javax.swing.JFrame {
         setLocationRelativeTo(this);
     }
 
+    public JLabel getBg() {
+        return bg;
+    }
+
+    public void setBg(JLabel bg) {
+        this.bg = bg;
+    }
+
+    public void BackMouseListener(MouseListener l) {
+        this.Button_Back.addMouseListener(l);
+    }
+
+    public void HutanHujanMouseListener(MouseListener l) {
+        this.Button_HutanMusim.addMouseListener(l);
+    }
+
+    public void HutanMusimMouseListener(MouseListener l) {
+        this.Button_HutanMusim.addMouseListener(l);
+    }
+
+    public void NextMouseListener(MouseListener l) {
+        this.Button_next.addMouseListener(l);
+    }
+
+    public void PrevMouseListener(MouseListener l) {
+        this.Button_prev.addMouseListener(l);
+    }
+
+    public JButton getButton_Back() {
+        return Button_Back;
+    }
+
+    public void setButton_Back(JButton Button_Back) {
+        this.Button_Back = Button_Back;
+    }
+
+    public JButton getButton_HutanMusim() {
+        return Button_HutanMusim;
+    }
+
+    public void setButton_HutanMusim(JButton Button_HutanMusim) {
+        this.Button_HutanMusim = Button_HutanMusim;
+    }
+
+    public JButton getButton_hujantropis() {
+        return Button_hujantropis;
+    }
+
+    public void setButton_hujantropis(JButton Button_hujantropis) {
+        this.Button_hujantropis = Button_hujantropis;
+    }
+
+    public JButton getButton_hutanHujan() {
+        return Button_HutanHujan;
+    }
+
+    public void setButton_hutanHujan(JButton Button_hutanHujan) {
+        this.Button_HutanHujan = Button_hutanHujan;
+    }
+
+    public JButton getButton_hutanMusim() {
+        return Button_hutanMusim;
+    }
+
+    public void setButton_hutanMusim(JButton Button_hutanMusim) {
+        this.Button_hutanMusim = Button_hutanMusim;
+    }
+
+    public JButton getButton_next() {
+        return Button_next;
+    }
+
+    public void setButton_next(JButton Button_next) {
+        this.Button_next = Button_next;
+    }
+
+    public JButton getButton_prev() {
+        return Button_prev;
+    }
+
+    public void setButton_prev(JButton Button_prev) {
+        this.Button_prev = Button_prev;
+    }
+
+    public JLabel getPilihHutan() {
+        return PilihHutan;
+    }
+
+    public void setPilihHutan(JLabel PilihHutan) {
+        this.PilihHutan = PilihHutan;
+    }
+
+   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,13 +126,42 @@ public class MulaiView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PilihHutan = new javax.swing.JLabel();
+        Button_hujantropis = new javax.swing.JButton();
+        Button_hutanMusim = new javax.swing.JButton();
+        Button_Back = new javax.swing.JButton();
         Button_prev = new javax.swing.JButton();
         Button_next = new javax.swing.JButton();
-        Button_pilih = new javax.swing.JButton();
+        Button_HutanMusim = new javax.swing.JButton();
+        Button_HutanHujan = new javax.swing.JButton();
+        Label_kali = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PilihHutan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/pilih_hutanmu.png"))); // NOI18N
+        getContentPane().add(PilihHutan, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
+
+        Button_hujantropis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/htn_hujan.png"))); // NOI18N
+        Button_hujantropis.setToolTipText("");
+        Button_hujantropis.setBorderPainted(false);
+        Button_hujantropis.setContentAreaFilled(false);
+        Button_hujantropis.setFocusable(false);
+        getContentPane().add(Button_hujantropis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+
+        Button_hutanMusim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/htn_musim.png"))); // NOI18N
+        Button_hutanMusim.setBorderPainted(false);
+        Button_hutanMusim.setContentAreaFilled(false);
+        Button_hutanMusim.setFocusable(false);
+        getContentPane().add(Button_hutanMusim, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
+
+        Button_Back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/TentangUI/BACK.png"))); // NOI18N
+        Button_Back.setBorderPainted(false);
+        Button_Back.setContentAreaFilled(false);
+        Button_Back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Button_Back.setFocusable(false);
+        getContentPane().add(Button_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 90, -1));
 
         Button_prev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/LEFT.png"))); // NOI18N
         Button_prev.setToolTipText("");
@@ -42,75 +169,83 @@ public class MulaiView extends javax.swing.JFrame {
         Button_prev.setContentAreaFilled(false);
         Button_prev.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_prev.setFocusable(false);
-        getContentPane().add(Button_prev, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
+        Button_prev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_prevActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Button_prev, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
 
         Button_next.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/RIGHT.png"))); // NOI18N
         Button_next.setBorderPainted(false);
         Button_next.setContentAreaFilled(false);
         Button_next.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_next.setFocusable(false);
-        getContentPane().add(Button_next, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, -1, -1));
-
-        Button_pilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/PILIH.png"))); // NOI18N
-        Button_pilih.setBorderPainted(false);
-        Button_pilih.setContentAreaFilled(false);
-        Button_pilih.setFocusable(false);
-        Button_pilih.addActionListener(new java.awt.event.ActionListener() {
+        Button_next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button_pilihActionPerformed(evt);
+                Button_nextActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 640, -1, -1));
+        getContentPane().add(Button_next, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, -1, -1));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/HUJAN TROPIS FULL.png"))); // NOI18N
+        Button_HutanMusim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/musim_brw.png"))); // NOI18N
+        Button_HutanMusim.setBorderPainted(false);
+        Button_HutanMusim.setContentAreaFilled(false);
+        Button_HutanMusim.setFocusable(false);
+        Button_HutanMusim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_HutanMusimActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Button_HutanMusim, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+
+        Button_HutanHujan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/hujantropis_brw.png"))); // NOI18N
+        Button_HutanHujan.setBorderPainted(false);
+        Button_HutanHujan.setContentAreaFilled(false);
+        Button_HutanHujan.setFocusable(false);
+        Button_HutanHujan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_HutanHujanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Button_HutanHujan, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 590, 520));
+
+        Label_kali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/sungai.png"))); // NOI18N
+        getContentPane().add(Label_kali, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
+
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/bg.png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Button_pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_pilihActionPerformed
+    private void Button_prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_prevActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Button_pilihActionPerformed
+    }//GEN-LAST:event_Button_prevActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MulaiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MulaiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MulaiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MulaiView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void Button_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_nextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_nextActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MulaiView().setVisible(true);
-            }
-        });
-    }
+    private void Button_HutanHujanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_HutanHujanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_HutanHujanActionPerformed
+
+    private void Button_HutanMusimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_HutanMusimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_HutanMusimActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Button_Back;
+    private javax.swing.JButton Button_HutanHujan;
+    private javax.swing.JButton Button_HutanMusim;
+    private javax.swing.JButton Button_hujantropis;
+    private javax.swing.JButton Button_hutanMusim;
     private javax.swing.JButton Button_next;
-    private javax.swing.JButton Button_pilih;
     private javax.swing.JButton Button_prev;
+    private javax.swing.JLabel Label_kali;
+    private javax.swing.JLabel PilihHutan;
     private javax.swing.JLabel bg;
     // End of variables declaration//GEN-END:variables
 }
