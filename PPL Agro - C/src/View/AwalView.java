@@ -86,6 +86,9 @@ public class AwalView extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HUTANKU");
+        setAlwaysOnTop(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Button_Mulai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/AwalUI/MULAI.png"))); // NOI18N
