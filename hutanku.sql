@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Okt 2018 pada 17.37
--- Versi server: 10.1.36-MariaDB
--- Versi PHP: 7.2.10
+-- Generation Time: Oct 12, 2018 at 04:10 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bibit`
+-- Table structure for table `bibit`
 --
 
 CREATE TABLE `bibit` (
@@ -37,7 +37,7 @@ CREATE TABLE `bibit` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hutan`
+-- Table structure for table `hutan`
 --
 
 CREATE TABLE `hutan` (
@@ -48,7 +48,7 @@ CREATE TABLE `hutan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemain`
+-- Table structure for table `pemain`
 --
 
 CREATE TABLE `pemain` (
@@ -57,10 +57,22 @@ CREATE TABLE `pemain` (
   `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pemain`
+--
+
+INSERT INTO `pemain` (`idPemain`, `namaPemain`, `nilai`) VALUES
+(1, 'namaku', 0),
+(2, 'gege', 0),
+(3, 'lol', 0),
+(4, '', 0),
+(5, 'nhjsajn', 0),
+(6, 'as', 0);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `perawatan`
+-- Table structure for table `perawatan`
 --
 
 CREATE TABLE `perawatan` (
@@ -72,7 +84,7 @@ CREATE TABLE `perawatan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pupuk`
+-- Table structure for table `pupuk`
 --
 
 CREATE TABLE `pupuk` (
@@ -83,7 +95,7 @@ CREATE TABLE `pupuk` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `savedgame`
+-- Table structure for table `savedgame`
 --
 
 CREATE TABLE `savedgame` (
@@ -97,77 +109,78 @@ CREATE TABLE `savedgame` (
 --
 
 --
--- Indeks untuk tabel `bibit`
+-- Indexes for table `bibit`
 --
 ALTER TABLE `bibit`
   ADD PRIMARY KEY (`idBibit`);
 
 --
--- Indeks untuk tabel `hutan`
+-- Indexes for table `hutan`
 --
 ALTER TABLE `hutan`
   ADD PRIMARY KEY (`idHutan`);
 
 --
--- Indeks untuk tabel `pemain`
+-- Indexes for table `pemain`
 --
 ALTER TABLE `pemain`
-  ADD PRIMARY KEY (`idPemain`);
+  ADD PRIMARY KEY (`idPemain`),
+  ADD UNIQUE KEY `namaPemain` (`namaPemain`);
 
 --
--- Indeks untuk tabel `perawatan`
+-- Indexes for table `perawatan`
 --
 ALTER TABLE `perawatan`
   ADD PRIMARY KEY (`idPerawatan`);
 
 --
--- Indeks untuk tabel `pupuk`
+-- Indexes for table `pupuk`
 --
 ALTER TABLE `pupuk`
   ADD PRIMARY KEY (`idPupuk`);
 
 --
--- Indeks untuk tabel `savedgame`
+-- Indexes for table `savedgame`
 --
 ALTER TABLE `savedgame`
   ADD PRIMARY KEY (`idGame`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `bibit`
+-- AUTO_INCREMENT for table `bibit`
 --
 ALTER TABLE `bibit`
   MODIFY `idBibit` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `hutan`
+-- AUTO_INCREMENT for table `hutan`
 --
 ALTER TABLE `hutan`
   MODIFY `idHutan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `pemain`
+-- AUTO_INCREMENT for table `pemain`
 --
 ALTER TABLE `pemain`
-  MODIFY `idPemain` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPemain` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `perawatan`
+-- AUTO_INCREMENT for table `perawatan`
 --
 ALTER TABLE `perawatan`
   MODIFY `idPerawatan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `pupuk`
+-- AUTO_INCREMENT for table `pupuk`
 --
 ALTER TABLE `pupuk`
   MODIFY `idPupuk` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `savedgame`
+-- AUTO_INCREMENT for table `savedgame`
 --
 ALTER TABLE `savedgame`
   MODIFY `idGame` int(11) NOT NULL AUTO_INCREMENT;

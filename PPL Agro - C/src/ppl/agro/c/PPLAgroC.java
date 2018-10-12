@@ -5,14 +5,14 @@ import Model.UserModel;
 import View.AwalView;
 import View.MulaiView;
 import View.PopUpKeluarView;
+import java.sql.SQLException;
 
 public class PPLAgroC {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         AwalView awal = new AwalView();
-        MulaiView mulai = new MulaiView();
         UserModel userM = new UserModel();
-        new UserController(awal, userM);
+        new UserController(awal,userM);
 
 
     }

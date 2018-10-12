@@ -31,6 +31,14 @@ public class MulaiView extends javax.swing.JFrame {
         this.bg = bg;
     }
 
+    public JLabel getLabel_username() {
+        return Label_username;
+    }
+
+    public void setLabel_username(JLabel Label_username) {
+        this.Label_username = Label_username;
+    }
+
     public void BackMouseListener(MouseListener l) {
         this.Button_Back.addMouseListener(l);
     }
@@ -49,6 +57,10 @@ public class MulaiView extends javax.swing.JFrame {
 
     public void PrevMouseListener(MouseListener l) {
         this.Button_prev.addMouseListener(l);
+    }
+
+    public void PilihMouseListener(MouseListener l) {
+        this.Button_Pilih.addMouseListener(l);
     }
 
     public JButton getButton_Back() {
@@ -115,7 +127,15 @@ public class MulaiView extends javax.swing.JFrame {
         this.PilihHutan = PilihHutan;
     }
 
-   
+    public JButton getButton_Pilih() {
+        return Button_Pilih;
+    }
+
+    public void setButton_Pilih(JButton Button_Pilih) {
+        this.Button_Pilih = Button_Pilih;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,6 +147,8 @@ public class MulaiView extends javax.swing.JFrame {
     private void initComponents() {
 
         PilihHutan = new javax.swing.JLabel();
+        Label_username = new javax.swing.JLabel();
+        Button_Pilih = new javax.swing.JButton();
         Button_hujantropis = new javax.swing.JButton();
         Button_hutanMusim = new javax.swing.JButton();
         Button_Back = new javax.swing.JButton();
@@ -142,6 +164,16 @@ public class MulaiView extends javax.swing.JFrame {
 
         PilihHutan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/pilih_hutanmu.png"))); // NOI18N
         getContentPane().add(PilihHutan, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
+
+        Label_username.setFont(new java.awt.Font("Impact", 0, 12)); // NOI18N
+        getContentPane().add(Label_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 730, 90, 20));
+
+        Button_Pilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/PILIH.png"))); // NOI18N
+        Button_Pilih.setBorderPainted(false);
+        Button_Pilih.setContentAreaFilled(false);
+        Button_Pilih.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Button_Pilih.setFocusable(false);
+        getContentPane().add(Button_Pilih, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 670, 230, -1));
 
         Button_hujantropis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/htn_hujan.png"))); // NOI18N
         Button_hujantropis.setToolTipText("");
@@ -240,11 +272,13 @@ public class MulaiView extends javax.swing.JFrame {
     private javax.swing.JButton Button_Back;
     private javax.swing.JButton Button_HutanHujan;
     private javax.swing.JButton Button_HutanMusim;
+    private javax.swing.JButton Button_Pilih;
     private javax.swing.JButton Button_hujantropis;
     private javax.swing.JButton Button_hutanMusim;
     private javax.swing.JButton Button_next;
     private javax.swing.JButton Button_prev;
     private javax.swing.JLabel Label_kali;
+    private javax.swing.JLabel Label_username;
     private javax.swing.JLabel PilihHutan;
     private javax.swing.JLabel bg;
     // End of variables declaration//GEN-END:variables
