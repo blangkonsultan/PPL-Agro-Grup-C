@@ -165,8 +165,9 @@ public class MulaiView extends javax.swing.JFrame {
         PilihHutan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/pilih_hutanmu.png"))); // NOI18N
         getContentPane().add(PilihHutan, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
 
-        Label_username.setFont(new java.awt.Font("Impact", 0, 12)); // NOI18N
-        getContentPane().add(Label_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 730, 90, 20));
+        Label_username.setFont(new java.awt.Font("Hobo Std", 0, 24)); // NOI18N
+        Label_username.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Label_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 710, 150, 40));
 
         Button_Pilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/PILIH.png"))); // NOI18N
         Button_Pilih.setBorderPainted(false);

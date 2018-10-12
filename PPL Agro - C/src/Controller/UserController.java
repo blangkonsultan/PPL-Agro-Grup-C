@@ -76,6 +76,7 @@ public class UserController {
         mulai.setVisible(true);
         mulai.getButton_hujantropis().setVisible(true);
         mulai.getButton_hutanMusim().setVisible(false);
+        mulai.getLabel_username().setText(username);
         mulai.BackMouseListener(new BackMulaiMouseListener());
         mulai.PrevMouseListener(new PrevMouseListener());
         mulai.NextMouseListener(new NextMouseListener());
@@ -268,7 +269,6 @@ public class UserController {
             try {
                 new UserController(mulai, userM);
                 newGame.dispose();
-                mulai.getLabel_username().setText(username);
             } catch (SQLException ex) {
                 Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             }
