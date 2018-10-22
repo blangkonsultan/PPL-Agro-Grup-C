@@ -70,8 +70,14 @@ public class PopUpMasukkanNamaView extends javax.swing.JDialog {
         Button_Ok.setContentAreaFilled(false);
         Button_Ok.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_Ok.setFocusable(false);
-        getContentPane().add(Button_Ok, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 360, 90, 70));
+        Button_Ok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_OkActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Button_Ok, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 340, 160, 110));
 
+        TextField_namaUaer.setFont(new java.awt.Font("Niagara Engraved", 1, 52)); // NOI18N
         TextField_namaUaer.setBorder(null);
         getContentPane().add(TextField_namaUaer, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 190, 720, 110));
 
@@ -80,6 +86,10 @@ public class PopUpMasukkanNamaView extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Button_OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_OkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_OkActionPerformed
 
 
 

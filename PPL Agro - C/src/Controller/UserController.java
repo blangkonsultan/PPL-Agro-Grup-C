@@ -10,10 +10,12 @@ import View.AwalView;
 import View.BermainView;
 import View.MulaiView;
 import View.NewGameView;
+import View.PopUpAssetView;
 import View.PopUpKeluarView;
 import View.PopUpMasukkanNamaView;
 import View.PopUpPilihHutanView;
 import View.TentangView;
+import java.awt.Button;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -21,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +41,7 @@ public class UserController {
     PopUpKeluarView dialogKeluar;
     PopUpMasukkanNamaView dialogMasukkanNama;
     PopUpPilihHutanView dialogPilihHutan;
+    PopUpAssetView dialogAsset;
     public static String username = "";
     boolean pindah = false;
 
@@ -104,12 +108,429 @@ public class UserController {
         this.bermain = bermain;
         this.userM = userM;
         bermain.setVisible(true);
+        bermain.getLabel_tanah1().setVisible(false);
+        bermain.getLabel_tanah2().setVisible(false);
+        bermain.getLabel_tanah3().setVisible(false);
+        bermain.getLabel_tanah4().setVisible(false);
+        bermain.getLabel_tanah5().setVisible(false);
+        bermain.getLabel_tanah6().setVisible(false);
+        bermain.getLabel_tanah7().setVisible(false);
+        bermain.getLabel_tanah8().setVisible(false);
+        bermain.getLabel_pohon1().setVisible(false);
+        bermain.getLabel_pohon2().setVisible(false);
+        bermain.getLabel_pohon3().setVisible(false);
+        bermain.getLabel_pohon4().setVisible(false);
+        bermain.getLabel_pohon5().setVisible(false);
+        bermain.getLabel_pohon6().setVisible(false);
+        bermain.getLabel_pohon7().setVisible(false);
+        bermain.getLabel_pohon8().setVisible(false);
+        bermain.getLabel_tanah8().setVisible(false);
+        bermain.getLabel_pohon1_2().setVisible(false);
+        bermain.getLabel_pohon2_2().setVisible(false);
+        bermain.getLabel_pohon3_2().setVisible(false);
+        bermain.getLabel_pohon4_2().setVisible(false);
+        bermain.getLabel_pohon5_2().setVisible(false);
+        bermain.getLabel_pohon6_2().setVisible(false);
+        bermain.getLabel_pohon7_2().setVisible(false);
+        bermain.getLabel_pohon8_2().setVisible(false);
         bermain.KembaliMouseListener(new KembaliBermainMouseListener());
+        bermain.kotak1MouseListener(new kotak1Listener());
+        bermain.kotak2MouseListener(new kotak2Listener());
+        bermain.kotak3MouseListener(new kotak3Listener());
+        bermain.kotak4MouseListener(new kotak4Listener());
+        bermain.kotak5MouseListener(new kotak5Listener());
+        bermain.kotak6MouseListener(new kotak6Listener());
+        bermain.kotak7MouseListener(new kotak7Listener());
+        bermain.kotak8MouseListener(new kotak8Listener());
+        bermain.pupukMouseListener(new pupukListener());
+        bermain.airMouseListener(new airListener());
+        bermain.tasMouseListener(new tasListener());
+
+        dialogAsset = new PopUpAssetView(bermain, true);
+        dialogAsset.CloseMouseListener(new CloseListener());
+        dialogAsset.PohonJatiMouseListener(new pohonjatiListener());
     }
 
     private void setIcon(JButton button, String resource) {
         //Method untuk mengganti icon button
         button.setIcon(new ImageIcon(getClass().getResource(resource)));
+    }
+
+    private void tanam(String frame) {
+        if (frame.equalsIgnoreCase("bermain")) {
+            if (!bermain.getLabel_tanah1().isVisible()) {
+                bermain.getLabel_tanah1().setVisible(true);
+            } else if (!bermain.getLabel_tanah2().isVisible() && bermain.getLabel_tanah1().isVisible()) {
+                bermain.getLabel_tanah2().setVisible(true);
+            } else if (!bermain.getLabel_tanah3().isVisible() && bermain.getLabel_tanah2().isVisible()
+                    && bermain.getLabel_tanah1().isVisible()) {
+                bermain.getLabel_tanah3().setVisible(true);
+            } else if (!bermain.getLabel_tanah4().isVisible() && bermain.getLabel_tanah3().isVisible()
+                    && bermain.getLabel_tanah2().isVisible() && bermain.getLabel_tanah1().isVisible()) {
+                bermain.getLabel_tanah4().setVisible(true);
+            } else if (!bermain.getLabel_tanah5().isVisible() && bermain.getLabel_tanah4().isVisible()
+                    && bermain.getLabel_tanah3().isVisible() && bermain.getLabel_tanah2().isVisible()
+                    && bermain.getLabel_tanah1().isVisible()) {
+                bermain.getLabel_tanah5().setVisible(true);
+            } else if (!bermain.getLabel_tanah6().isVisible() && bermain.getLabel_tanah5().isVisible()
+                    && bermain.getLabel_tanah4().isVisible() && bermain.getLabel_tanah3().isVisible() 
+                    && bermain.getLabel_tanah2().isVisible() && bermain.getLabel_tanah1().isVisible()) {
+                bermain.getLabel_tanah6().setVisible(true);
+            } else if (!bermain.getLabel_tanah7().isVisible() && bermain.getLabel_tanah6().isVisible()
+                    && bermain.getLabel_tanah5().isVisible()  && bermain.getLabel_tanah4().isVisible() 
+                    && bermain.getLabel_tanah3().isVisible() && bermain.getLabel_tanah2().isVisible()
+                    && bermain.getLabel_tanah1().isVisible()) {
+                bermain.getLabel_tanah7().setVisible(true);
+            } else if (!bermain.getLabel_tanah8().isVisible() && bermain.getLabel_tanah7().isVisible() && bermain.getLabel_tanah6().isVisible()
+                    && bermain.getLabel_tanah5().isVisible()  && bermain.getLabel_tanah4().isVisible() 
+                    && bermain.getLabel_tanah3().isVisible() && bermain.getLabel_tanah2().isVisible()
+                    && bermain.getLabel_tanah1().isVisible()) {
+                    bermain.getLabel_tanah8().setVisible(true);
+            }
+//            if (button.equalsIgnoreCase("kotak1")) {
+//                bermain.getLabel_tanah1().setVisible(true);
+//            } else if (button.equalsIgnoreCase("kotak2")) {
+//                bermain.getLabel_tanah2().setVisible(true);
+//            } else if (button.equalsIgnoreCase("kotak3")) {
+//                bermain.getLabel_tanah3().setVisible(true);
+//            } else if (button.equalsIgnoreCase("kotak4")) {
+//                bermain.getLabel_tanah4().setVisible(true);
+//            } else if (button.equalsIgnoreCase("kotak5")) {
+//                bermain.getLabel_tanah5().setVisible(true);
+//            } else if (button.equalsIgnoreCase("kotak6")) {
+//                bermain.getLabel_tanah6().setVisible(true);
+//            } else if (button.equalsIgnoreCase("kotak7")) {
+//                bermain.getLabel_tanah7().setVisible(true);
+//            } else if (button.equalsIgnoreCase("kotak8")) {
+//                bermain.getLabel_tanah8().setVisible(true);
+//            }
+        }
+    }
+
+    private class pohonjatiListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tanam("bermain");
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class tasListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            dialogAsset.setVisible(true);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class airListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            setIcon(bermain.getButton_air(), "/View/Lahan/alat_siram2.png");
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+             setIcon(bermain.getButton_air(), "/View/Lahan/alat_siram1.png");
+        }
+    }
+
+    private class CloseListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            setIcon(dialogAsset.getButton_close(), "/View/Asset/back-02.png");
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            setIcon(dialogAsset.getButton_close(), "/View/Asset/back-01.png");
+        }
+    }
+
+    private class pupukListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            setIcon(bermain.getButton_pupuk(), "/View/Lahan/pupuk2.png");
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            setIcon(bermain.getButton_pupuk(), "/View/Lahan/pupuk1.png");
+        }
+    }
+
+    private class kotak8Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+           
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class kotak6Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+                        System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class kotak7Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+          
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class kotak5Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+           
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class kotak4Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class kotak3Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+          
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class kotak2Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class kotak1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            
+            System.out.println("bisa");
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
     }
 
     private class KembaliBermainMouseListener implements MouseListener {
