@@ -484,7 +484,7 @@ public class BermainView extends javax.swing.JFrame {
         getContentPane().add(Label_pohon1_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
 
         Label_pohon2_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/pohon2.png"))); // NOI18N
-        getContentPane().add(Label_pohon2_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, -1, -1));
+        getContentPane().add(Label_pohon2_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, -1, -1));
 
         Label_pohon3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/pohon2.png"))); // NOI18N
         getContentPane().add(Label_pohon3_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
@@ -508,7 +508,7 @@ public class BermainView extends javax.swing.JFrame {
         getContentPane().add(Label_pohon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, -1));
 
         Label_pohon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/pohon1.png"))); // NOI18N
-        getContentPane().add(Label_pohon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 200, -1, -1));
+        getContentPane().add(Label_pohon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 210, -1, -1));
 
         Label_pohon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/pohon1.png"))); // NOI18N
         getContentPane().add(Label_pohon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
