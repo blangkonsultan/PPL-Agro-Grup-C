@@ -13,9 +13,9 @@ public class PPLAgroC {
     public static void main(String[] args) throws SQLException {
         AwalView awal = new AwalView();
         BermainView bermain = new BermainView();
+        MulaiView mulai = new MulaiView();
         UserModel userM = new UserModel();
-        new UserController(bermain,userM);
-
+        new UserController(mulai, userM);
 
     }
 

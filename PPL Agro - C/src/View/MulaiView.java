@@ -134,6 +134,14 @@ public class MulaiView extends javax.swing.JFrame {
     public void setButton_Pilih(JButton Button_Pilih) {
         this.Button_Pilih = Button_Pilih;
     }
+
+    public JButton getButton_HutanHujan() {
+        return Button_HutanHujan;
+    }
+
+    public void setButton_HutanHujan(JButton Button_HutanHujan) {
+        this.Button_HutanHujan = Button_HutanHujan;
+    }
     
     
 

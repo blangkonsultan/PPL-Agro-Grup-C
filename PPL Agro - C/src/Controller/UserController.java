@@ -47,10 +47,12 @@ public class UserController {
     PopUpPilihHutanView dialogPilihHutan;
     PopUpAssetView dialogAsset;
     public static String username = "";
+    Timer time;
+    boolean hutanHujan;
 
 //    boolean pindah = false;
-    private final int sekon = 10;
-
+//    private final int sekon = 40;
+//    private final int sekonLama = 120;
     public UserController(AwalView awal, UserModel userM) throws SQLException {
         this.userM = new UserModel();
         //Constructor untuk memanggil frame Awal
@@ -155,6 +157,13 @@ public class UserController {
         dialogAsset = new PopUpAssetView(bermain, true);
         dialogAsset.CloseMouseListener(new CloseListener());
         dialogAsset.PohonJatiMouseListener(new pohonjatiListener());
+        dialogAsset.PohonCemaraMouseListener(new pohonCemaraListener());
+        dialogAsset.PohonKapurMouseListener(new pohonKapurListener());
+        dialogAsset.PohonKayuBesiMouseListener(new pohonKayuBesiListener());
+        dialogAsset.PohonKayuHitamMouseListener(new pohonKayuHitamListener());
+        dialogAsset.PohonPilangMouseListener(new pohonPilangListener());
+        dialogAsset.PohonPinusMouseListener(new pohonPinusListener());
+        dialogAsset.PohonSakuraMouseListener(new pohonSakuraListener());
     }
 
     private void setIcon(JButton button, String resource) {
@@ -162,40 +171,40 @@ public class UserController {
         button.setIcon(new ImageIcon(getClass().getResource(resource)));
     }
 
-    private void tanam(String frame) {
+    private void tanam(String frame, int sec) {
         if (frame.equalsIgnoreCase("bermain")) {
             if (!bermain.getLabel_tanah1().isVisible()) {
                 bermain.getLabel_tanah1().setVisible(true);
-                timer("bermain", 1);
+                timer("bermain", 1, sec);
             } else if (!bermain.getLabel_tanah2().isVisible()) {
                 bermain.getLabel_tanah2().setVisible(true);
-                timer("bermain", 2);
+                timer("bermain", 2, sec);
             } else if (!bermain.getLabel_tanah3().isVisible()) {
                 bermain.getLabel_tanah3().setVisible(true);
-                timer("bermain", 3);
+                timer("bermain", 3, sec);
             } else if (!bermain.getLabel_tanah4().isVisible()) {
                 bermain.getLabel_tanah4().setVisible(true);
-                timer("bermain", 4);
+                timer("bermain", 4, sec);
             } else if (!bermain.getLabel_tanah5().isVisible()) {
                 bermain.getLabel_tanah5().setVisible(true);
-                timer("bermain", 5);
+                timer("bermain", 5, sec);
             } else if (!bermain.getLabel_tanah6().isVisible()) {
                 bermain.getLabel_tanah6().setVisible(true);
-                timer("bermain", 6);
+                timer("bermain", 6, sec);
             } else if (!bermain.getLabel_tanah7().isVisible()) {
                 bermain.getLabel_tanah7().setVisible(true);
-                timer("bermain", 7);
+                timer("bermain", 7, sec);
             } else if (!bermain.getLabel_tanah8().isVisible()) {
                 bermain.getLabel_tanah8().setVisible(true);
-                timer("bermain", 8);
+                timer("bermain", 8, sec);
             }
         }
     }
 
-    private void timer(String frame, int lahan) {
-        Timer time;
+    private void timer(String frame, int lahan, int sek) {
+
         ActionListener gameTimer = new ActionListener() {
-            int sec = sekon;
+            int sec = sek;
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -203,7 +212,7 @@ public class UserController {
                 sec--;
 
                 if (frame.equalsIgnoreCase("bermain")) {
-                    if (sec == 5) {
+                    if (sec == 20) {
                         if (bermain.getLabel_tanah1().isVisible() && lahan == 1) {
                             bermain.getLabel_pohon1().setVisible(true);
                         }
@@ -234,42 +243,42 @@ public class UserController {
                         if (bermain.getLabel_pohon1().isVisible() && lahan == 1) {
                             bermain.getLabel_pohon1_2().setVisible(true);
                             bermain.getLabel_pohon1().setVisible(false);
-                           
+
                         }
                         if (bermain.getLabel_pohon2().isVisible() && lahan == 2) {
                             bermain.getLabel_pohon2_2().setVisible(true);
                             bermain.getLabel_pohon2().setVisible(false);
-                           
+
                         }
                         if (bermain.getLabel_pohon3().isVisible() && lahan == 3) {
                             bermain.getLabel_pohon3_2().setVisible(true);
                             bermain.getLabel_pohon3().setVisible(false);
-                            
+//                           
                         }
                         if (bermain.getLabel_pohon4().isVisible() && lahan == 4) {
                             bermain.getLabel_pohon4_2().setVisible(true);
                             bermain.getLabel_pohon4().setVisible(false);
-                            
+
                         }
                         if (bermain.getLabel_pohon5().isVisible() && lahan == 5) {
                             bermain.getLabel_pohon5_2().setVisible(true);
                             bermain.getLabel_pohon5().setVisible(false);
-                         
+
                         }
                         if (bermain.getLabel_pohon6().isVisible() && lahan == 6) {
                             bermain.getLabel_pohon6_2().setVisible(true);
                             bermain.getLabel_pohon6().setVisible(false);
-                           
+
                         }
                         if (bermain.getLabel_pohon7().isVisible() && lahan == 7) {
                             bermain.getLabel_pohon7_2().setVisible(true);
                             bermain.getLabel_pohon7().setVisible(false);
-                            
+
                         }
                         if (bermain.getLabel_pohon8().isVisible() && lahan == 8) {
                             bermain.getLabel_pohon8_2().setVisible(true);
                             bermain.getLabel_pohon8().setVisible(false);
-                           
+
                         }
                     }
                 }
@@ -279,13 +288,244 @@ public class UserController {
         };
         time = new Timer(1000, gameTimer);
         time.start();
+
+    }
+
+    public void stopTimer(String frame, int lahan) {
+
+        time.stop();
+    }
+
+    private class pohonSakuraListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (hutanHujan) {
+                System.out.println("lama");
+                tanam("bermain", 1200);
+            } else {
+                tanam("bermain", 40);
+                System.out.println("cepat");
+            }
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class pohonPinusListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (hutanHujan) {
+                System.out.println("cepat");
+                tanam("bermain", 40);
+            } else {
+                tanam("bermain", 1200);
+                System.out.println("lama");
+            }
+
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class pohonPilangListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (hutanHujan) {
+                System.out.println("cepat");
+                tanam("bermain", 40);
+            } else {
+                tanam("bermain", 1200);
+                System.out.println("lama");
+            }
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class pohonKayuHitamListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (hutanHujan) {
+                System.out.println("lama");
+                tanam("bermain", 1200);
+            } else {
+                tanam("bermain", 40);
+                System.out.println("cepat");
+            }
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class pohonKayuBesiListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (hutanHujan) {
+                System.out.println("cepat");
+                tanam("bermain", 40);
+            } else {
+                tanam("bermain", 1200);
+                System.out.println("lama");
+            }
+            dialogAsset.dispose();
+       
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class pohonKapurListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (hutanHujan) {
+                System.out.println("lama");
+                tanam("bermain", 1200);
+            } else {
+                tanam("bermain", 40);
+                System.out.println("cepat");
+            }
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class pohonCemaraListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if ( hutanHujan) {
+                System.out.println("cepat");
+                tanam("bermain", 40);
+            } else {
+                tanam("bermain", 1200);
+                System.out.println("lama");
+            }
+            dialogAsset.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
     }
 
     private class pohonjatiListener implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            tanam("bermain");
+           if ( hutanHujan) {
+                System.out.println("lama");
+                tanam("bermain", 1200);
+            } else {
+                tanam("bermain", 40);
+                System.out.println("cepat");
+            }
             dialogAsset.dispose();
         }
 
@@ -823,6 +1063,8 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+
+            System.out.println("hutan hujan :" + hutanHujan);
             dialogPilihHutan.setVisible(true);
         }
 
@@ -853,7 +1095,9 @@ public class UserController {
             setIcon(mulai.getButton_HutanMusim(), "/View/MulaiUI/musim_brw.png");
             mulai.getButton_hujantropis().setVisible(true);
             mulai.getButton_hutanMusim().setVisible(false);
+            hutanHujan = true;
 
+            System.out.println("hutan hujan :" + hutanHujan);
         }
 
         @Override
@@ -887,6 +1131,9 @@ public class UserController {
             setIcon(mulai.getButton_hutanHujan(), "/View/MulaiUI/hujantropis_brw.png");
             mulai.getButton_hujantropis().setVisible(false);
             mulai.getButton_hutanMusim().setVisible(true);
+            hutanHujan = false;
+
+            System.out.println("hutan hujan :" + hutanHujan);
         }
 
         @Override
