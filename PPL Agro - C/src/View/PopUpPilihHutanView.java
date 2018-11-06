@@ -8,6 +8,7 @@ package View;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
+import View.MulaiView;
 
 /**
  *
@@ -18,10 +19,11 @@ public class PopUpPilihHutanView extends javax.swing.JDialog {
     /**
      * Creates new form PopUpNewGameView
      */
+
     public PopUpPilihHutanView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(this);
+        setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
     }
 

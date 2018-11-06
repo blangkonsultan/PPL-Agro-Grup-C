@@ -48,8 +48,8 @@ public class PopUpAssetView extends javax.swing.JDialog {
     public void PohonPinusMouseListener(MouseListener l) {
         this.Button_pohonPinus.addMouseListener(l);
     }
-    public void PohonSakuraMouseListener(MouseListener l) {
-        this.Button_pohonSakura.addMouseListener(l);
+    public void PohonKaretMouseListener(MouseListener l) {
+        this.Button_pohonKaret.addMouseListener(l);
     }
 
     public void setButton_close(JButton Button_close) {
@@ -116,12 +116,12 @@ public class PopUpAssetView extends javax.swing.JDialog {
         this.Button_pohonPinus = Button_pohonPinus;
     }
 
-    public JButton getButton_pohonSakura() {
-        return Button_pohonSakura;
+    public JButton getButton_pohonKaret() {
+        return Button_pohonKaret;
     }
 
     public void setButton_pohonSakura(JButton Button_pohonSakura) {
-        this.Button_pohonSakura = Button_pohonSakura;
+        this.Button_pohonKaret = Button_pohonSakura;
     }
 
     public JLabel getLabel_jmlPohonCemara() {
@@ -180,12 +180,12 @@ public class PopUpAssetView extends javax.swing.JDialog {
         this.Label_jmlPohonPinus = Label_jmlPohonPinus;
     }
 
-    public JLabel getLabel_jmlPohonSakura() {
-        return Label_jmlPohonSakura;
+    public JLabel getLabel_jmlPohonKaret() {
+        return Label_jmlPohonKaret;
     }
 
-    public void setLabel_jmlPohonSakura(JLabel Label_jmlPohonSakura) {
-        this.Label_jmlPohonSakura = Label_jmlPohonSakura;
+    public void setLabel_jmlPohonSakura(JLabel Label_jmlPohonKaret) {
+        this.Label_jmlPohonKaret = Label_jmlPohonKaret;
     }
     
     
@@ -201,7 +201,7 @@ public class PopUpAssetView extends javax.swing.JDialog {
 
         Label_jmlPohonKayuHitam = new javax.swing.JLabel();
         Label_jmlPohonKapur = new javax.swing.JLabel();
-        Label_jmlPohonSakura = new javax.swing.JLabel();
+        Label_jmlPohonKaret = new javax.swing.JLabel();
         Label_jmlPohonPilang = new javax.swing.JLabel();
         Label_jmlPohonKayuBesi = new javax.swing.JLabel();
         Label_jmlPohonCemara = new javax.swing.JLabel();
@@ -210,7 +210,7 @@ public class PopUpAssetView extends javax.swing.JDialog {
         Button_close = new javax.swing.JButton();
         Button_pohonKayuHitam = new javax.swing.JButton();
         Button_pohonKapur = new javax.swing.JButton();
-        Button_pohonSakura = new javax.swing.JButton();
+        Button_pohonKaret = new javax.swing.JButton();
         Button_pohonPilang = new javax.swing.JButton();
         Button_pohonKayuBesi = new javax.swing.JButton();
         Button_pohonCemara = new javax.swing.JButton();
@@ -230,9 +230,9 @@ public class PopUpAssetView extends javax.swing.JDialog {
         Label_jmlPohonKapur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(Label_jmlPohonKapur, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 60, 20));
 
-        Label_jmlPohonSakura.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
-        Label_jmlPohonSakura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonSakura, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 60, 20));
+        Label_jmlPohonKaret.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
+        Label_jmlPohonKaret.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(Label_jmlPohonKaret, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 60, 20));
 
         Label_jmlPohonPilang.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonPilang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -265,58 +265,58 @@ public class PopUpAssetView extends javax.swing.JDialog {
                 Button_closeActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 80, 80));
+        getContentPane().add(Button_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 80));
 
-        Button_pohonKayuHitam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/2.png"))); // NOI18N
+        Button_pohonKayuHitam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_kayu_hitam1.png"))); // NOI18N
         Button_pohonKayuHitam.setBorderPainted(false);
         Button_pohonKayuHitam.setContentAreaFilled(false);
         Button_pohonKayuHitam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonKayuHitam.setFocusable(false);
         getContentPane().add(Button_pohonKayuHitam, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 100, -1));
 
-        Button_pohonKapur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/3.png"))); // NOI18N
+        Button_pohonKapur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_kapur1.png"))); // NOI18N
         Button_pohonKapur.setBorderPainted(false);
         Button_pohonKapur.setContentAreaFilled(false);
         Button_pohonKapur.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonKapur.setFocusable(false);
         getContentPane().add(Button_pohonKapur, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, -1));
 
-        Button_pohonSakura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/4.png"))); // NOI18N
-        Button_pohonSakura.setBorderPainted(false);
-        Button_pohonSakura.setContentAreaFilled(false);
-        Button_pohonSakura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Button_pohonSakura.setFocusable(false);
-        getContentPane().add(Button_pohonSakura, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 100, -1));
+        Button_pohonKaret.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_karet1.png"))); // NOI18N
+        Button_pohonKaret.setBorderPainted(false);
+        Button_pohonKaret.setContentAreaFilled(false);
+        Button_pohonKaret.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Button_pohonKaret.setFocusable(false);
+        getContentPane().add(Button_pohonKaret, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 100, -1));
 
-        Button_pohonPilang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/5.png"))); // NOI18N
+        Button_pohonPilang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_pilang1.png"))); // NOI18N
         Button_pohonPilang.setBorderPainted(false);
         Button_pohonPilang.setContentAreaFilled(false);
         Button_pohonPilang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonPilang.setFocusable(false);
         getContentPane().add(Button_pohonPilang, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 100, -1));
 
-        Button_pohonKayuBesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/6.png"))); // NOI18N
+        Button_pohonKayuBesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_kayu_besi1.png"))); // NOI18N
         Button_pohonKayuBesi.setBorderPainted(false);
         Button_pohonKayuBesi.setContentAreaFilled(false);
         Button_pohonKayuBesi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonKayuBesi.setFocusable(false);
         getContentPane().add(Button_pohonKayuBesi, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 100, -1));
 
-        Button_pohonCemara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/7.png"))); // NOI18N
+        Button_pohonCemara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_cemara1.png"))); // NOI18N
         Button_pohonCemara.setBorderPainted(false);
         Button_pohonCemara.setContentAreaFilled(false);
         Button_pohonCemara.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonCemara.setFocusable(false);
         getContentPane().add(Button_pohonCemara, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 100, -1));
 
-        Button_pohonPinus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/8.png"))); // NOI18N
+        Button_pohonPinus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_pinus1.png"))); // NOI18N
         Button_pohonPinus.setBorderPainted(false);
         Button_pohonPinus.setContentAreaFilled(false);
         Button_pohonPinus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonPinus.setFocusable(false);
         getContentPane().add(Button_pohonPinus, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 100, -1));
 
-        Button_pohonJati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/1.png"))); // NOI18N
+        Button_pohonJati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_jati1.png"))); // NOI18N
         Button_pohonJati.setBorderPainted(false);
         Button_pohonJati.setContentAreaFilled(false);
         Button_pohonJati.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -349,19 +349,19 @@ public class PopUpAssetView extends javax.swing.JDialog {
     private javax.swing.JButton Button_pohonCemara;
     private javax.swing.JButton Button_pohonJati;
     private javax.swing.JButton Button_pohonKapur;
+    private javax.swing.JButton Button_pohonKaret;
     private javax.swing.JButton Button_pohonKayuBesi;
     private javax.swing.JButton Button_pohonKayuHitam;
     private javax.swing.JButton Button_pohonPilang;
     private javax.swing.JButton Button_pohonPinus;
-    private javax.swing.JButton Button_pohonSakura;
     private javax.swing.JLabel Label_jmlPohonCemara;
     private javax.swing.JLabel Label_jmlPohonJati;
     private javax.swing.JLabel Label_jmlPohonKapur;
+    private javax.swing.JLabel Label_jmlPohonKaret;
     private javax.swing.JLabel Label_jmlPohonKayuBesi;
     private javax.swing.JLabel Label_jmlPohonKayuHitam;
     private javax.swing.JLabel Label_jmlPohonPilang;
     private javax.swing.JLabel Label_jmlPohonPinus;
-    private javax.swing.JLabel Label_jmlPohonSakura;
     private javax.swing.JLabel bg;
     // End of variables declaration//GEN-END:variables
 }
