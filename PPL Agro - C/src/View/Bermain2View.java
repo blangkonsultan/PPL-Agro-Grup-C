@@ -6,24 +6,21 @@
 package View;
 
 import java.awt.event.MouseListener;
-import javax.accessibility.AccessibleContext;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JRootPane;
 
 /**
  *
  * @author adheraprabu
  */
-public class Bermain1View extends javax.swing.JFrame {
+public class Bermain2View extends javax.swing.JFrame {
 
     /**
-     * Creates new form bermainView
+     * Creates new form Bermain2View
      */
-    public Bermain1View() {
+    public Bermain2View() {
         initComponents();
-        setLocationRelativeTo(this);
-
+        setLocationRelativeTo(null);
     }
 
     public void KembaliMouseListener(MouseListener l) {
@@ -62,52 +59,29 @@ public class Bermain1View extends javax.swing.JFrame {
         this.Button_tas.addMouseListener(l);
     }
 
-    public void Pohon1_2MouseListener(MouseListener l) {
+    public void Pohon1MouseListener(MouseListener l) {
         this.Label_pohon1_2.addMouseListener(l);
     }
 
-    public void Pohon2_2MouseListener(MouseListener l) {
+    public void Pohon2MouseListener(MouseListener l) {
         this.Label_pohon2_2.addMouseListener(l);
     }
 
-    public void Pohon3_2MouseListener(MouseListener l) {
+    public void Pohon3MouseListener(MouseListener l) {
         this.Label_pohon3_2.addMouseListener(l);
     }
 
-    public void Pohon4_2MouseListener(MouseListener l) {
+    public void Pohon4MouseListener(MouseListener l) {
         this.Label_pohon4_2.addMouseListener(l);
     }
 
-    public void Pohon2MouseListener(MouseListener l) {
-        this.Label_pohon2.addMouseListener(l);
+    public JButton getButton_Shop() {
+
+        return Button_Shop;
     }
 
-    public void Pohon1MouseListener(MouseListener l) {
-        this.Label_pohon1.addMouseListener(l);
-    }
-
-    public void Pohon3MouseListener(MouseListener l) {
-        this.Label_pohon3.addMouseListener(l);
-    }
-
-    public void Pohon4MouseListener(MouseListener l) {
-        this.Label_pohon4.addMouseListener(l);
-    }
-
-    public void Tanah1MouseListener(MouseListener l) {
-        this.Label_tanah1.addMouseListener(l);
-    }
-
-    public void Tanah2MouseListener(MouseListener l) {
-        this.Label_tanah2.addMouseListener(l);
-    }
-
-    public void Tanah3MouseListener(MouseListener l) {
-        this.Label_tanah3.addMouseListener(l);
-    }
-
-    public void Tanah4MouseListener(MouseListener l) {
-        this.Label_tanah4.addMouseListener(l);
+    public void setButton_Shop(JButton Button_Shop) {
+        this.Button_Shop = Button_Shop;
     }
 
     public JButton getButton_air() {
@@ -158,6 +132,22 @@ public class Bermain1View extends javax.swing.JFrame {
         this.Button_kotak4 = Button_kotak4;
     }
 
+    public JButton getButton_kotak5() {
+        return Button_kotak5;
+    }
+
+    public void setButton_kotak5(JButton Button_kotak5) {
+        this.Button_kotak5 = Button_kotak5;
+    }
+
+    public JButton getButton_kotak6() {
+        return Button_kotak6;
+    }
+
+    public void setButton_kotak6(JButton Button_kotak6) {
+        this.Button_kotak6 = Button_kotak6;
+    }
+
     public JButton getButton_pupuk() {
         return Button_pupuk;
     }
@@ -172,6 +162,14 @@ public class Bermain1View extends javax.swing.JFrame {
 
     public void setButton_tas(JButton Button_tas) {
         this.Button_tas = Button_tas;
+    }
+
+    public JLabel getLabel_Star() {
+        return Label_Star;
+    }
+
+    public void setLabel_Star(JLabel Label_Star) {
+        this.Label_Star = Label_Star;
     }
 
     public JLabel getLabel_jmlUang() {
@@ -254,6 +252,38 @@ public class Bermain1View extends javax.swing.JFrame {
         this.Label_pohon4_2 = Label_pohon4_2;
     }
 
+    public JLabel getLabel_pohon5() {
+        return Label_pohon5;
+    }
+
+    public void setLabel_pohon5(JLabel Label_pohon5) {
+        this.Label_pohon5 = Label_pohon5;
+    }
+
+    public JLabel getLabel_pohon5_2() {
+        return Label_pohon5_2;
+    }
+
+    public void setLabel_pohon5_2(JLabel Label_pohon5_2) {
+        this.Label_pohon5_2 = Label_pohon5_2;
+    }
+
+    public JLabel getLabel_pohon6() {
+        return Label_pohon6;
+    }
+
+    public void setLabel_pohon6(JLabel Label_pohon6) {
+        this.Label_pohon6 = Label_pohon6;
+    }
+
+    public JLabel getLabel_pohon6_2() {
+        return Label_pohon6_2;
+    }
+
+    public void setLabel_pohon6_2(JLabel Label_pohon6_2) {
+        this.Label_pohon6_2 = Label_pohon6_2;
+    }
+
     public JLabel getLabel_tanah1() {
         return Label_tanah1;
     }
@@ -286,12 +316,52 @@ public class Bermain1View extends javax.swing.JFrame {
         this.Label_tanah4 = Label_tanah4;
     }
 
-    public JLabel getLabel_Star() {
-        return Label_Star;
+    public JLabel getLabel_tanah5() {
+        return Label_tanah5;
     }
 
-    public void setLabel_Star(JLabel Label_Star) {
-        this.Label_Star = Label_Star;
+    public void setLabel_tanah5(JLabel Label_tanah5) {
+        this.Label_tanah5 = Label_tanah5;
+    }
+
+    public JLabel getLabel_tanah6() {
+        return Label_tanah6;
+    }
+
+    public void setLabel_tanah6(JLabel Label_tanah6) {
+        this.Label_tanah6 = Label_tanah6;
+    }
+
+    public JLabel getBg() {
+        return bg;
+    }
+
+    public void setBg(JLabel bg) {
+        this.bg = bg;
+    }
+
+    public JLabel getBintangKecil() {
+        return bintangKecil;
+    }
+
+    public void setBintangKecil(JLabel bintangKecil) {
+        this.bintangKecil = bintangKecil;
+    }
+
+    public JLabel getBintangKecil1() {
+        return bintangKecil1;
+    }
+
+    public void setBintangKecil1(JLabel bintangKecil1) {
+        this.bintangKecil1 = bintangKecil1;
+    }
+
+    public JLabel getBintangKecil2() {
+        return bintangKecil2;
+    }
+
+    public void setBintangKecil2(JLabel bintangKecil2) {
+        this.bintangKecil2 = bintangKecil2;
     }
 
     public JLabel getjLabel2() {
@@ -304,18 +374,6 @@ public class Bermain1View extends javax.swing.JFrame {
 
     public JLabel getjLabel3() {
         return jLabel3;
-    }
-
-    public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
-    }
-
-    public JButton getButton_Shop() {
-        return Button_Shop;
-    }
-
-    public void setButton_Shop(JButton Button_Shop) {
-        this.Button_Shop = Button_Shop;
     }
 
     /**
@@ -337,18 +395,26 @@ public class Bermain1View extends javax.swing.JFrame {
         Label_pohon2_2 = new javax.swing.JLabel();
         Label_pohon3_2 = new javax.swing.JLabel();
         Label_pohon4_2 = new javax.swing.JLabel();
+        Label_pohon5_2 = new javax.swing.JLabel();
+        Label_pohon6_2 = new javax.swing.JLabel();
         Label_pohon1 = new javax.swing.JLabel();
         Label_pohon2 = new javax.swing.JLabel();
         Label_pohon3 = new javax.swing.JLabel();
         Label_pohon4 = new javax.swing.JLabel();
+        Label_pohon5 = new javax.swing.JLabel();
+        Label_pohon6 = new javax.swing.JLabel();
         Label_tanah1 = new javax.swing.JLabel();
         Label_tanah2 = new javax.swing.JLabel();
         Label_tanah3 = new javax.swing.JLabel();
         Label_tanah4 = new javax.swing.JLabel();
+        Label_tanah5 = new javax.swing.JLabel();
+        Label_tanah6 = new javax.swing.JLabel();
         Button_kotak1 = new javax.swing.JButton();
         Button_kotak2 = new javax.swing.JButton();
         Button_kotak3 = new javax.swing.JButton();
         Button_kotak4 = new javax.swing.JButton();
+        Button_kotak5 = new javax.swing.JButton();
+        Button_kotak6 = new javax.swing.JButton();
         Button_air = new javax.swing.JButton();
         Button_pupuk = new javax.swing.JButton();
         Button_tas = new javax.swing.JButton();
@@ -389,52 +455,58 @@ public class Bermain1View extends javax.swing.JFrame {
         getContentPane().add(Label_Star, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
 
         Label_pohon1_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        Label_pohon1_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon1_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, -1, -1));
+        getContentPane().add(Label_pohon1_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
         Label_pohon2_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        Label_pohon2_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon2_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, -1, -1));
+        getContentPane().add(Label_pohon2_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, -1, -1));
 
         Label_pohon3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        Label_pohon3_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon3_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        getContentPane().add(Label_pohon3_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
 
         Label_pohon4_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        Label_pohon4_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon4_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, -1, -1));
+        getContentPane().add(Label_pohon4_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, -1));
+
+        Label_pohon5_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
+        getContentPane().add(Label_pohon5_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+
+        Label_pohon6_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
+        getContentPane().add(Label_pohon6_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
         Label_pohon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        Label_pohon1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, -1, -1));
+        getContentPane().add(Label_pohon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, -1));
 
         Label_pohon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        Label_pohon2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 280, -1, -1));
+        getContentPane().add(Label_pohon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, -1, -1));
 
         Label_pohon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        Label_pohon3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        getContentPane().add(Label_pohon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
 
         Label_pohon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        Label_pohon4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_pohon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, -1, -1));
+        getContentPane().add(Label_pohon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
+
+        Label_pohon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
+        getContentPane().add(Label_pohon5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
+
+        Label_pohon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
+        getContentPane().add(Label_pohon6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, -1, -1));
 
         Label_tanah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        Label_tanah1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_tanah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, -1));
+        getContentPane().add(Label_tanah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, -1, -1));
 
         Label_tanah2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        Label_tanah2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_tanah2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, -1, 30));
+        getContentPane().add(Label_tanah2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, -1, 30));
 
         Label_tanah3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        Label_tanah3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_tanah3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, -1, -1));
+        getContentPane().add(Label_tanah3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, -1, -1));
 
         Label_tanah4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        Label_tanah4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(Label_tanah4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 520, -1, -1));
+        getContentPane().add(Label_tanah4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, -1, -1));
+
+        Label_tanah5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
+        getContentPane().add(Label_tanah5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
+
+        Label_tanah6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
+        getContentPane().add(Label_tanah6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 570, -1, -1));
 
         Button_kotak1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak1.setBorderPainted(false);
@@ -446,7 +518,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak1ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
+        getContentPane().add(Button_kotak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, -1));
 
         Button_kotak2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak2.setBorderPainted(false);
@@ -458,7 +530,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak2ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, -1, -1));
+        getContentPane().add(Button_kotak2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 310, -1, -1));
 
         Button_kotak3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak3.setBorderPainted(false);
@@ -470,7 +542,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak3ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
+        getContentPane().add(Button_kotak3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
 
         Button_kotak4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak4.setBorderPainted(false);
@@ -482,7 +554,31 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak4ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 490, -1, -1));
+        getContentPane().add(Button_kotak4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, -1, -1));
+
+        Button_kotak5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
+        Button_kotak5.setBorderPainted(false);
+        Button_kotak5.setContentAreaFilled(false);
+        Button_kotak5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Button_kotak5.setFocusable(false);
+        Button_kotak5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_kotak5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Button_kotak5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
+
+        Button_kotak6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
+        Button_kotak6.setBorderPainted(false);
+        Button_kotak6.setContentAreaFilled(false);
+        Button_kotak6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Button_kotak6.setFocusable(false);
+        Button_kotak6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_kotak6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Button_kotak6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, -1, -1));
 
         Button_air.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/alat_siram1.png"))); // NOI18N
         Button_air.setBorderPainted(false);
@@ -535,26 +631,68 @@ public class Bermain1View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Button_kotak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_kotak1ActionPerformed
+
     private void Button_kotak2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_kotak2ActionPerformed
-
-    private void Button_kotak4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Button_kotak4ActionPerformed
 
     private void Button_kotak3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_kotak3ActionPerformed
 
-    private void Button_kotak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak1ActionPerformed
+    private void Button_kotak4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Button_kotak1ActionPerformed
+    }//GEN-LAST:event_Button_kotak4ActionPerformed
 
     private void Button_tasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_tasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_tasActionPerformed
 
+    private void Button_kotak5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_kotak5ActionPerformed
+
+    private void Button_kotak6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_kotak6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_kotak6ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Bermain2View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Bermain2View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Bermain2View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Bermain2View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Bermain2View().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Shop;
@@ -564,6 +702,8 @@ public class Bermain1View extends javax.swing.JFrame {
     private javax.swing.JButton Button_kotak2;
     private javax.swing.JButton Button_kotak3;
     private javax.swing.JButton Button_kotak4;
+    private javax.swing.JButton Button_kotak5;
+    private javax.swing.JButton Button_kotak6;
     private javax.swing.JButton Button_pupuk;
     private javax.swing.JButton Button_tas;
     private javax.swing.JLabel Label_Star;
@@ -577,10 +717,16 @@ public class Bermain1View extends javax.swing.JFrame {
     private javax.swing.JLabel Label_pohon3_2;
     private javax.swing.JLabel Label_pohon4;
     private javax.swing.JLabel Label_pohon4_2;
+    private javax.swing.JLabel Label_pohon5;
+    private javax.swing.JLabel Label_pohon5_2;
+    private javax.swing.JLabel Label_pohon6;
+    private javax.swing.JLabel Label_pohon6_2;
     private javax.swing.JLabel Label_tanah1;
     private javax.swing.JLabel Label_tanah2;
     private javax.swing.JLabel Label_tanah3;
     private javax.swing.JLabel Label_tanah4;
+    private javax.swing.JLabel Label_tanah5;
+    private javax.swing.JLabel Label_tanah6;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel bintangKecil;
     private javax.swing.JLabel bintangKecil1;
