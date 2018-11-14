@@ -10,12 +10,15 @@ import View.AwalView;
 import View.Bermain1View;
 import View.MulaiView;
 import View.NewGameView;
+import View.PanelTokoAirView;
 import View.PopUpAssetView;
 import View.PopUpKeluarView;
 import View.PopUpMasukkanNamaView;
 import View.PopUpPilihHutanView;
+import View.PopUpShopView;
 import View.TentangView;
 import java.awt.Button;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -47,6 +50,9 @@ public class UserController {
     PopUpMasukkanNamaView dialogMasukkanNama;
     PopUpPilihHutanView dialogPilihHutan;
     PopUpAssetView dialogAsset;
+    PopUpShopView dialogToko;
+    GridBagLayout layout = new GridBagLayout();
+    PanelTokoAirView tokoAir = new PanelTokoAirView();
     int[] sekonTumbuh = new int[11];
     byte[] kotakAktif = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static String username = "";
@@ -165,10 +171,20 @@ public class UserController {
         dialogAsset.PohonPilangMouseListener(new pohonPilangListener());
         dialogAsset.PohonPinusMouseListener(new pohonPinusListener());
         dialogAsset.PohonKaretMouseListener(new pohonKaretListener());
+
+        dialogToko = new PopUpShopView(bermain1, true);
+        dialogToko.getDynamicPanel().setLayout(layout);
+        dialogToko.getDynamicPanel().add(tokoAir);
+//        dialogToko.getDynamicPanel().add(gas);
+//        dialogToko.getDynamicPanel().add(lap);
+        dialogToko.getDynamicPanel().setVisible(false);
+        dialogToko.AirMouseListener(new AirTokoListener());
+        dialogToko.CloseMouseListener(new CloseTokoListener());
     }
 
     private void siram(int lahan) {
         if (siram) {
+            System.out.println("siram");
             if (lahan == 1) {
                 sekonTumbuh[0] -= 15;
                 System.out.println("waktu lahan 1 berkurang 15 detik");
@@ -191,6 +207,132 @@ public class UserController {
                 sekonTumbuh[3] -= 15;
                 System.out.println("waktu lahan 4 berkurang 15 detik");
                 siram = false;
+            }
+
+            if (lahan == 5) {
+                sekonTumbuh[4] -= 15;
+                System.out.println("waktu lahan 5 berkurang 15 detik");
+                siram = false;
+            }
+
+            if (lahan == 6) {
+                sekonTumbuh[5] -= 15;
+                System.out.println("waktu lahan 6 berkurang 15 detik");
+                siram = false;
+            }
+
+            if (lahan == 7) {
+                sekonTumbuh[6] -= 15;
+                System.out.println("waktu lahan 7 berkurang 15 detik");
+                siram = false;
+            }
+
+            if (lahan == 8) {
+                sekonTumbuh[7] -= 15;
+                System.out.println("waktu lahan 8 berkurang 15 detik");
+                siram = false;
+            }
+
+            if (lahan == 9) {
+                sekonTumbuh[8] -= 15;
+                System.out.println("waktu lahan 9 berkurang 15 detik");
+                siram = false;
+            }
+
+            if (lahan == 10) {
+                sekonTumbuh[9] -= 15;
+                System.out.println("waktu lahan 10 berkurang 15 detik");
+                siram = false;
+            }
+
+            if (lahan == 11) {
+                sekonTumbuh[10] -= 15;
+                System.out.println("waktu lahan 11 berkurang 15 detik");
+                siram = false;
+            }
+
+            if (lahan == 12) {
+                sekonTumbuh[11] -= 15;
+                System.out.println("waktu lahan 12 berkurang 15 detik");
+                siram = false;
+            }
+
+        }
+    }
+
+    private void pupuk(int lahan) {
+        if (pupuk) {
+            System.out.println("pupuk");
+            if (lahan == 1) {
+                sekonTumbuh[0] -= 15;
+                System.out.println("waktu lahan 1 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 2) {
+                sekonTumbuh[1] -= 15;
+                System.out.println("waktu lahan 2 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 3) {
+                sekonTumbuh[2] -= 15;
+                System.out.println("waktu lahan 3 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 4) {
+                sekonTumbuh[3] -= 15;
+                System.out.println("waktu lahan 4 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 5) {
+                sekonTumbuh[4] -= 15;
+                System.out.println("waktu lahan 5 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 6) {
+                sekonTumbuh[5] -= 15;
+                System.out.println("waktu lahan 6 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 7) {
+                sekonTumbuh[6] -= 15;
+                System.out.println("waktu lahan 7 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 8) {
+                sekonTumbuh[7] -= 15;
+                System.out.println("waktu lahan 8 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 9) {
+                sekonTumbuh[8] -= 15;
+                System.out.println("waktu lahan 9 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 10) {
+                sekonTumbuh[9] -= 15;
+                System.out.println("waktu lahan 10 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 11) {
+                sekonTumbuh[10] -= 15;
+                System.out.println("waktu lahan 11 berkurang 15 detik");
+                pupuk = false;
+            }
+
+            if (lahan == 12) {
+                sekonTumbuh[11] -= 15;
+                System.out.println("waktu lahan 12 berkurang 15 detik");
+                pupuk = false;
             }
         }
     }
@@ -455,6 +597,58 @@ public class UserController {
     public void stopTimer() {
 
         time.stop();
+
+    }
+
+    private class CloseTokoListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            dialogToko.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class AirTokoListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            setIcon(dialogToko.getButton_Air(), "/View/Toko/air_select.png");
+            dialogToko.getDynamicPanel().setVisible(true);
+            tokoAir.setVisible(true);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+
     }
 
     private class Tanah4Lvl1Listener implements MouseListener {
@@ -462,6 +656,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(4);
+            pupuk(4);
         }
 
         @Override
@@ -486,6 +681,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(3);
+            pupuk(3);
         }
 
         @Override
@@ -510,6 +706,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(2);
+            pupuk(2);
         }
 
         @Override
@@ -534,6 +731,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(1);
+            pupuk(2);
         }
 
         @Override
@@ -558,10 +756,12 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(4);
+            pupuk(4);
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
+
         }
 
         @Override
@@ -582,6 +782,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(3);
+            pupuk(3);
         }
 
         @Override
@@ -606,6 +807,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(2);
+            pupuk(2);
         }
 
         @Override
@@ -630,6 +832,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(1);
+            pupuk(1);
         }
 
         @Override
@@ -749,6 +952,10 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            setIcon(dialogToko.getButton_Air(), "/View/Toko/air_select.png");
+            dialogToko.getDynamicPanel().setVisible(true);
+            tokoAir.setVisible(true);
+            dialogToko.setVisible(true);
         }
 
         @Override
@@ -761,10 +968,12 @@ public class UserController {
 
         @Override
         public void mouseEntered(MouseEvent e) {
+            setIcon(bermain1.getButton_Shop(), "/View/Lahan/shop2.png");
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
+            setIcon(bermain1.getButton_Shop(), "/View/Lahan/shop1.png");
         }
     }
 
