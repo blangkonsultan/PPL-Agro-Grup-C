@@ -131,6 +131,7 @@ public class PopUpShopView extends javax.swing.JDialog {
     private void initComponents() {
 
         DynamicPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         Button_Close = new javax.swing.JButton();
         Button_Air = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -148,6 +149,12 @@ public class PopUpShopView extends javax.swing.JDialog {
         DynamicPanel.setOpaque(false);
         DynamicPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(DynamicPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 660, 480));
+
+        jLabel4.setFont(new java.awt.Font("MingLiU_HKSCS-ExtB", 1, 60)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("TOKOKU");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, -1));
 
         Button_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Toko/tutup.png"))); // NOI18N
         Button_Close.setBorderPainted(false);
@@ -212,5 +219,6 @@ public class PopUpShopView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

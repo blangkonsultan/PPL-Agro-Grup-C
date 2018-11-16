@@ -224,35 +224,35 @@ public class PopUpAssetView extends javax.swing.JDialog {
 
         Label_jmlPohonKayuHitam.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonKayuHitam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonKayuHitam, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 60, 20));
+        getContentPane().add(Label_jmlPohonKayuHitam, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, 60, 20));
 
         Label_jmlPohonKapur.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonKapur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonKapur, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 60, 20));
+        getContentPane().add(Label_jmlPohonKapur, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 60, 20));
 
         Label_jmlPohonKaret.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonKaret.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonKaret, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 60, 20));
+        getContentPane().add(Label_jmlPohonKaret, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 60, 20));
 
         Label_jmlPohonPilang.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonPilang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonPilang, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 60, 20));
+        getContentPane().add(Label_jmlPohonPilang, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 60, 20));
 
         Label_jmlPohonKayuBesi.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonKayuBesi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonKayuBesi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 60, 20));
+        getContentPane().add(Label_jmlPohonKayuBesi, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 60, 20));
 
         Label_jmlPohonCemara.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonCemara.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonCemara, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 60, 20));
+        getContentPane().add(Label_jmlPohonCemara, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 60, 20));
 
         Label_jmlPohonPinus.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonPinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonPinus, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 60, 20));
+        getContentPane().add(Label_jmlPohonPinus, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 60, 20));
 
         Label_jmlPohonJati.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
         Label_jmlPohonJati.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(Label_jmlPohonJati, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 60, 20));
+        getContentPane().add(Label_jmlPohonJati, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 450, 60, 20));
 
         Button_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/back-01.png"))); // NOI18N
         Button_close.setBorderPainted(false);
@@ -272,49 +272,49 @@ public class PopUpAssetView extends javax.swing.JDialog {
         Button_pohonKayuHitam.setContentAreaFilled(false);
         Button_pohonKayuHitam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonKayuHitam.setFocusable(false);
-        getContentPane().add(Button_pohonKayuHitam, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 100, -1));
+        getContentPane().add(Button_pohonKayuHitam, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 100, -1));
 
         Button_pohonKapur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_kapur1.png"))); // NOI18N
         Button_pohonKapur.setBorderPainted(false);
         Button_pohonKapur.setContentAreaFilled(false);
         Button_pohonKapur.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonKapur.setFocusable(false);
-        getContentPane().add(Button_pohonKapur, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, -1));
+        getContentPane().add(Button_pohonKapur, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 100, -1));
 
         Button_pohonKaret.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_karet1.png"))); // NOI18N
         Button_pohonKaret.setBorderPainted(false);
         Button_pohonKaret.setContentAreaFilled(false);
         Button_pohonKaret.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonKaret.setFocusable(false);
-        getContentPane().add(Button_pohonKaret, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 100, -1));
+        getContentPane().add(Button_pohonKaret, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 100, -1));
 
         Button_pohonPilang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_pilang1.png"))); // NOI18N
         Button_pohonPilang.setBorderPainted(false);
         Button_pohonPilang.setContentAreaFilled(false);
         Button_pohonPilang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonPilang.setFocusable(false);
-        getContentPane().add(Button_pohonPilang, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 100, -1));
+        getContentPane().add(Button_pohonPilang, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 100, -1));
 
         Button_pohonKayuBesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_kayu_besi1.png"))); // NOI18N
         Button_pohonKayuBesi.setBorderPainted(false);
         Button_pohonKayuBesi.setContentAreaFilled(false);
         Button_pohonKayuBesi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonKayuBesi.setFocusable(false);
-        getContentPane().add(Button_pohonKayuBesi, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 100, -1));
+        getContentPane().add(Button_pohonKayuBesi, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 100, -1));
 
         Button_pohonCemara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_cemara1.png"))); // NOI18N
         Button_pohonCemara.setBorderPainted(false);
         Button_pohonCemara.setContentAreaFilled(false);
         Button_pohonCemara.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonCemara.setFocusable(false);
-        getContentPane().add(Button_pohonCemara, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 100, -1));
+        getContentPane().add(Button_pohonCemara, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 100, -1));
 
         Button_pohonPinus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_pinus1.png"))); // NOI18N
         Button_pohonPinus.setBorderPainted(false);
         Button_pohonPinus.setContentAreaFilled(false);
         Button_pohonPinus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pohonPinus.setFocusable(false);
-        getContentPane().add(Button_pohonPinus, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 100, -1));
+        getContentPane().add(Button_pohonPinus, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 100, -1));
 
         Button_pohonJati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/ass_pohon_jati1.png"))); // NOI18N
         Button_pohonJati.setBorderPainted(false);
@@ -326,7 +326,7 @@ public class PopUpAssetView extends javax.swing.JDialog {
                 Button_pohonJatiActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_pohonJati, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 100, -1));
+        getContentPane().add(Button_pohonJati, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 100, -1));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Asset/asset.png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
