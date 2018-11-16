@@ -8,6 +8,7 @@ package Controller;
 import Model.UserModel;
 import View.AwalView;
 import View.Bermain1View;
+import View.BermainView;
 import View.MulaiView;
 import View.NewGameView;
 import View.PanelTokoAirView;
@@ -59,9 +60,11 @@ public class UserController {
     PanelTokoAirView tokoAir = new PanelTokoAirView();
     PanelTokoPupukView tokoPupuk = new PanelTokoPupukView();
     PanelTokoBibitView tokoBibit = new PanelTokoBibitView();
+    boolean level[] = {true, false, false, false, false};
     int air[] = {3, 0};// index pertama air saat ini, index kedua yg akan dibeli
     int hargaAir = 5;
     int hargaPupuk = 15;
+    int bintang = 0;
     int pupuke[] = {3, 0};// index pertama pupuk saat ini, index kedua yg akan dibeli
     int bibit[] = {5, 5, 5, 5, 5, 5, 5, 5};//jumlah bibit tiap pohon
     //karet,pilang, cemara,kapur,pinus,kayu hitam, kayu besi,jati
@@ -142,21 +145,41 @@ public class UserController {
         bermain1.getLabel_tanah2().setVisible(false);
         bermain1.getLabel_tanah3().setVisible(false);
         bermain1.getLabel_tanah4().setVisible(false);
+        bermain1.getLabel_tanah5().setVisible(false);
+        bermain1.getLabel_tanah6().setVisible(false);
+        bermain1.getLabel_tanah7().setVisible(false);
+        bermain1.getLabel_tanah8().setVisible(false);
+        bermain1.getLabel_tanah9().setVisible(false);
+        bermain1.getLabel_tanah10().setVisible(false);
+        bermain1.getLabel_tanah11().setVisible(false);
+        bermain1.getLabel_tanah12().setVisible(false);
         bermain1.getLabel_pohon1().setVisible(false);
         bermain1.getLabel_pohon2().setVisible(false);
         bermain1.getLabel_pohon3().setVisible(false);
         bermain1.getLabel_pohon4().setVisible(false);
+        bermain1.getLabel_pohon5().setVisible(false);
+        bermain1.getLabel_pohon6().setVisible(false);
+        bermain1.getLabel_pohon7().setVisible(false);
+        bermain1.getLabel_pohon8().setVisible(false);
+        bermain1.getLabel_pohon9().setVisible(false);
+        bermain1.getLabel_pohon10().setVisible(false);
+        bermain1.getLabel_pohon11().setVisible(false);
+        bermain1.getLabel_pohon12().setVisible(false);
         bermain1.getLabel_pohon1_2().setVisible(false);
         bermain1.getLabel_pohon2_2().setVisible(false);
         bermain1.getLabel_pohon3_2().setVisible(false);
         bermain1.getLabel_pohon4_2().setVisible(false);
+        bermain1.getLabel_pohon5_2().setVisible(false);
+        bermain1.getLabel_pohon6_2().setVisible(false);
+        bermain1.getLabel_pohon7_2().setVisible(false);
+        bermain1.getLabel_pohon8_2().setVisible(false);
+        bermain1.getLabel_pohon9_2().setVisible(false);
+        bermain1.getLabel_pohon10_2().setVisible(false);
+        bermain1.getLabel_pohon11_2().setVisible(false);
+        bermain1.getLabel_pohon12_2().setVisible(false);
         bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
 
         bermain1.KembaliMouseListener(new KembaliBermainMouseListener());
-        bermain1.kotak1MouseListener(new kotak1Listener());
-        bermain1.kotak2MouseListener(new kotak2Listener());
-        bermain1.kotak3MouseListener(new kotak3Listener());
-        bermain1.kotak4MouseListener(new kotak4Listener());
         bermain1.pupukMouseListener(new pupukListener());
         bermain1.airMouseListener(new airListener());
         bermain1.tasMouseListener(new tasListener());
@@ -165,14 +188,38 @@ public class UserController {
         bermain1.Pohon2_2MouseListener(new Pohon2_2Lvl1Listener());
         bermain1.Pohon3_2MouseListener(new Pohon3_2Lvl1Listener());
         bermain1.Pohon4_2MouseListener(new Pohon4_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon5_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon6_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon7_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon8_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon9_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon10_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon11_2Lvl1Listener());
+        bermain1.Pohon4_2MouseListener(new Pohon12_2Lvl1Listener());
         bermain1.Pohon1MouseListener(new Pohon1Lvl1Listener());
         bermain1.Pohon2MouseListener(new Pohon2Lvl1Listener());
         bermain1.Pohon3MouseListener(new Pohon3Lvl1Listener());
         bermain1.Pohon4MouseListener(new Pohon4Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon5Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon6Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon7Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon8Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon9Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon10Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon11Lvl1Listener());
+        bermain1.Pohon4MouseListener(new Pohon12Lvl1Listener());
         bermain1.Tanah1MouseListener(new Tanah1Lvl1Listener());
         bermain1.Tanah2MouseListener(new Tanah2Lvl1Listener());
         bermain1.Tanah3MouseListener(new Tanah3Lvl1Listener());
         bermain1.Tanah4MouseListener(new Tanah4Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah5Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah6Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah7Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah8Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah9Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah10Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah11Lvl1Listener());
+        bermain1.Tanah4MouseListener(new Tanah12Lvl1Listener());
 
         dialogAsset = new PopUpAssetView(bermain1, true);
         dialogAsset.CloseMouseListener(new CloseListener());
@@ -212,6 +259,8 @@ public class UserController {
 
         dialogUangKurang = new PopUpUangKurangView(bermain1, true);
         dialogUangKurang.TutupMouseListener(new TutupUangKurang());
+        
+
     }
 
     private void beliBibit(int pohon) {
@@ -409,6 +458,8 @@ public class UserController {
                     System.out.println("waktu lahan 12 berkurang 15 detik");
                     siram = false;
                 }
+            } else {
+                JOptionPane.showMessageDialog(bermain1, "Air anda habis!!");
             }
         }
     }
@@ -489,12 +540,14 @@ public class UserController {
                     System.out.println("waktu lahan 12 berkurang 15 detik");
                     pupuk = false;
                 }
+            } else {
+                JOptionPane.showMessageDialog(bermain1, "pupuk anda habis!!");
             }
         }
     }
 
     private void tebang(int lahan) {
-
+        bintang += 1;
         if (bermain1.getLabel_pohon1_2().isVisible() && lahan == 1) {
             uang += 100;
             bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
@@ -530,6 +583,20 @@ public class UserController {
             bermain1.getLabel_tanah4().setVisible(false);
             kotakAktif[3] = 0;
         }
+        try {
+            menang();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void menang() throws SQLException {
+        if (level[0] && bintang ==3) {
+            JOptionPane.showMessageDialog(bermain1, "anda menang");
+            bermain1.dispose();
+            new UserController(mulai, userM);
+            level[1] = true;
+        }
     }
 
     private void setIcon(JButton button, String resource) {
@@ -563,6 +630,30 @@ public class UserController {
             } else if (!bermain1.getLabel_tanah4().isVisible()) {
                 bermain1.getLabel_tanah4().setVisible(true);
                 timer("bermain1", 4);
+            } else if (!bermain1.getLabel_tanah5().isVisible()) {
+                bermain1.getLabel_tanah5().setVisible(true);
+                timer("bermain1", 5);
+            } else if (!bermain1.getLabel_tanah6().isVisible()) {
+                bermain1.getLabel_tanah6().setVisible(true);
+                timer("bermain1", 6);
+            } else if (!bermain1.getLabel_tanah7().isVisible()) {
+                bermain1.getLabel_tanah7().setVisible(true);
+                timer("bermain1", 7);
+            } else if (!bermain1.getLabel_tanah8().isVisible()) {
+                bermain1.getLabel_tanah8().setVisible(true);
+                timer("bermain1", 8);
+            } else if (!bermain1.getLabel_tanah9().isVisible()) {
+                bermain1.getLabel_tanah9().setVisible(true);
+                timer("bermain1", 9);
+            } else if (!bermain1.getLabel_tanah10().isVisible()) {
+                bermain1.getLabel_tanah10().setVisible(true);
+                timer("bermain1", 10);
+            } else if (!bermain1.getLabel_tanah11().isVisible()) {
+                bermain1.getLabel_tanah11().setVisible(true);
+                timer("bermain1", 11);
+            } else if (!bermain1.getLabel_tanah12().isVisible()) {
+                bermain1.getLabel_tanah12().setVisible(true);
+                timer("bermain1", 12);
             }
         }
     }
@@ -590,6 +681,30 @@ public class UserController {
                             if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
                                 bermain1.getLabel_pohon4().setVisible(true);
                             }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
 
                         }
                         if (sekonTumbuh[0] == 0) {
@@ -611,6 +726,46 @@ public class UserController {
                             if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
                                 bermain1.getLabel_pohon4_2().setVisible(true);
                                 bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
 
                             }
 
@@ -635,7 +790,30 @@ public class UserController {
                             if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
                                 bermain1.getLabel_pohon4().setVisible(true);
                             }
-
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
                         }
                         if (sekonTumbuh[1] <= 0) {
                             if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
@@ -658,7 +836,46 @@ public class UserController {
                                 bermain1.getLabel_pohon4().setVisible(false);
 
                             }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
 
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
                         }
                     }
                 } else if (lahan == 3) {
@@ -679,7 +896,30 @@ public class UserController {
                             if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
                                 bermain1.getLabel_pohon4().setVisible(true);
                             }
-//                       
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
                         }
                         if (sekonTumbuh[2] <= 0) {
                             if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
@@ -702,7 +942,46 @@ public class UserController {
                                 bermain1.getLabel_pohon4().setVisible(false);
 
                             }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
 
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
                         }
                     }
                 } else if (lahan == 4) {
@@ -723,7 +1002,30 @@ public class UserController {
                             if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
                                 bermain1.getLabel_pohon4().setVisible(true);
                             }
-
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
                         }
                         if (sekonTumbuh[3] <= 0) {
                             if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
@@ -746,7 +1048,894 @@ public class UserController {
                                 bermain1.getLabel_pohon4().setVisible(false);
 
                             }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
 
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 5) {
+                    System.out.println("sekon 5 :" + sekonTumbuh[4]);
+                    sekonTumbuh[4]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[4] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[4] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 6) {
+                    System.out.println("sekon 6 :" + sekonTumbuh[5]);
+                    sekonTumbuh[5]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[5] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[5] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 7) {
+                    System.out.println("sekon 7 :" + sekonTumbuh[6]);
+                    sekonTumbuh[6]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[6] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[6] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 8) {
+                    System.out.println("sekon 8 :" + sekonTumbuh[7]);
+                    sekonTumbuh[7]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[7] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[7] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 9) {
+                    System.out.println("sekon 9 :" + sekonTumbuh[8]);
+                    sekonTumbuh[8]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[8] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[8] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 10) {
+                    System.out.println("sekon 10 :" + sekonTumbuh[9]);
+                    sekonTumbuh[9]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[9] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[9] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 11) {
+                    System.out.println("sekon 11 :" + sekonTumbuh[10]);
+                    sekonTumbuh[10]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[10] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[10] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
+                        }
+                    }
+                } else if (lahan == 12) {
+                    System.out.println("sekon 12 :" + sekonTumbuh[11]);
+                    sekonTumbuh[11]--;
+                    if (frame.equalsIgnoreCase("bermain1")) {
+                        if (sekonTumbuh[11] <= 20) {
+                            if (bermain1.getLabel_tanah1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2().setVisible(true);
+                            }
+
+                            if (bermain1.getLabel_tanah3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11().setVisible(true);
+                            }
+                            if (bermain1.getLabel_tanah12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12().setVisible(true);
+                            }
+                        }
+                        if (sekonTumbuh[11] <= 0) {
+                            if (bermain1.getLabel_pohon1().isVisible() && lahan == 1) {
+                                bermain1.getLabel_pohon1_2().setVisible(true);
+                                bermain1.getLabel_pohon1().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon2().isVisible() && lahan == 2) {
+                                bermain1.getLabel_pohon2_2().setVisible(true);
+                                bermain1.getLabel_pohon2().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon3().isVisible() && lahan == 3) {
+                                bermain1.getLabel_pohon3_2().setVisible(true);
+                                bermain1.getLabel_pohon3().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon4().isVisible() && lahan == 4) {
+                                bermain1.getLabel_pohon4_2().setVisible(true);
+                                bermain1.getLabel_pohon4().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon5().isVisible() && lahan == 5) {
+                                bermain1.getLabel_pohon5_2().setVisible(true);
+                                bermain1.getLabel_pohon5().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon6().isVisible() && lahan == 6) {
+                                bermain1.getLabel_pohon6_2().setVisible(true);
+                                bermain1.getLabel_pohon6().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon7().isVisible() && lahan == 7) {
+                                bermain1.getLabel_pohon7_2().setVisible(true);
+                                bermain1.getLabel_pohon7().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon8().isVisible() && lahan == 8) {
+                                bermain1.getLabel_pohon8_2().setVisible(true);
+                                bermain1.getLabel_pohon8().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon9().isVisible() && lahan == 9) {
+                                bermain1.getLabel_pohon9_2().setVisible(true);
+                                bermain1.getLabel_pohon9().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon10().isVisible() && lahan == 10) {
+                                bermain1.getLabel_pohon10_2().setVisible(true);
+                                bermain1.getLabel_pohon10().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon11().isVisible() && lahan == 11) {
+                                bermain1.getLabel_pohon11_2().setVisible(true);
+                                bermain1.getLabel_pohon11().setVisible(false);
+
+                            }
+                            if (bermain1.getLabel_pohon12().isVisible() && lahan == 12) {
+                                bermain1.getLabel_pohon12_2().setVisible(true);
+                                bermain1.getLabel_pohon12().setVisible(false);
+
+                            }
                         }
                     }
                 }
@@ -1263,6 +2452,206 @@ public class UserController {
 
     }
 
+    private class Tanah12Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(12);
+            pupuk(12);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Tanah11Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(11);
+            pupuk(11);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Tanah10Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(10);
+            pupuk(10);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Tanah9Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(9);
+            pupuk(9);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Tanah8Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(8);
+            pupuk(8);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Tanah7Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(7);
+            pupuk(7);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Tanah6Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(6);
+            pupuk(6);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Tanah5Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(5);
+            pupuk(5);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
     private class Tanah4Lvl1Listener implements MouseListener {
 
         @Override
@@ -1344,6 +2733,208 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(1);
             pupuk(2);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon12Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(12);
+            pupuk(12);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon11Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(11);
+            pupuk(11);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon10Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(10);
+            pupuk(10);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon9Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(9);
+            pupuk(9);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon8Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(8);
+            pupuk(8);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon7Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(7);
+            pupuk(7);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon6Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(6);
+            pupuk(6);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon5Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            siram(5);
+            pupuk(5);
         }
 
         @Override
@@ -1445,6 +3036,198 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(1);
             pupuk(1);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon12_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(12);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon11_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(11);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon10_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(10);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon9_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(9);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon8_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(8);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon7_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(7);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon6_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(6);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class Pohon5_2Lvl1Listener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            tebang(5);
         }
 
         @Override
@@ -1766,7 +3549,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
                 bibit[1] -= 1;
-                if (kotakAktif[0] == 0) {
+                if (kotakAktif[0] == 0 && bermain1.getButton_kotak1().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_pilang1.png");
                     setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_pilang3.png");
                     if (hutan == 1) {
@@ -1778,7 +3561,7 @@ public class UserController {
                     }
                     tanam("bermain1");
                     kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
+                } else if (kotakAktif[1] == 0 && bermain1.getButton_kotak2().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_pilang1.png");
                     setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_pilang3.png");
                     if (hutan == 1) {
@@ -1790,7 +3573,7 @@ public class UserController {
                     }
                     tanam("bermain1");
                     kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
+                } else if (kotakAktif[2] == 0 && bermain1.getButton_kotak3().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_pilang1.png");
                     setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_pilang3.png");
                     if (hutan == 1) {
@@ -1802,7 +3585,7 @@ public class UserController {
                     }
                     tanam("bermain1");
                     kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
+                } else if (kotakAktif[3] == 0 && bermain1.getButton_kotak4().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_pilang1.png");
                     setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_pilang3.png");
                     if (hutan == 1) {
@@ -1814,6 +3597,102 @@ public class UserController {
                     }
                     tanam("bermain1");
                     kotakAktif[3] = 1;
+                } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        System.out.println("lama");
+                        sekonTumbuh[4] = 40;
+                    } else {
+                        System.out.println("bentar");
+                        sekonTumbuh[4] = 120;
+                    }
+                    tanam("bermain1");
+                    kotakAktif[4] = 1;
+                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        System.out.println("lama");
+                        sekonTumbuh[5] = 40;
+                    } else {
+                        System.out.println("bentar");
+                        sekonTumbuh[5] = 120;
+                    }
+                    tanam("bermain1");
+                    kotakAktif[5] = 1;
+                } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        sekonTumbuh[6] = 40;
+                        System.out.println("lama");
+                    } else {
+                        sekonTumbuh[6] = 120;
+                        System.out.println("bentar");
+                    }
+                    tanam("bermain1");
+                    kotakAktif[6] = 1;
+                } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        System.out.println("lama");
+                        sekonTumbuh[7] = 40;
+                    } else {
+                        sekonTumbuh[7] = 120;
+                        System.out.println("bentar");
+                    }
+                    tanam("bermain1");
+                    kotakAktif[7] = 1;
+                } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        System.out.println("lama");
+                        sekonTumbuh[8] = 40;
+                    } else {
+                        System.out.println("bentar");
+                        sekonTumbuh[8] = 120;
+                    }
+                    tanam("bermain1");
+                    kotakAktif[8] = 1;
+                } else if (kotakAktif[9] == 0 && bermain1.getButton_kotak10().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        System.out.println("lama");
+                        sekonTumbuh[9] = 40;
+                    } else {
+                        System.out.println("bentar");
+                        sekonTumbuh[9] = 120;
+                    }
+                    tanam("bermain1");
+                    kotakAktif[9] = 1;
+                } else if (kotakAktif[10] == 0 && bermain1.getButton_kotak11().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        sekonTumbuh[10] = 40;
+                        System.out.println("lama");
+                    } else {
+                        sekonTumbuh[10] = 120;
+                        System.out.println("bentar");
+                    }
+                    tanam("bermain1");
+                    kotakAktif[10] = 1;
+                } else if (kotakAktif[11] == 0 && bermain1.getButton_kotak12().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_pilang1.png");
+                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_pilang3.png");
+                    if (hutan == 1) {
+                        System.out.println("lama");
+                        sekonTumbuh[11] = 40;
+                    } else {
+                        sekonTumbuh[11] = 120;
+                        System.out.println("bentar");
+                    }
+                    tanam("bermain1");
+                    kotakAktif[11] = 1;
                 } else {
                     JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
                 }
@@ -2334,7 +4213,7 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
+            pupuk = true;
             System.out.println("bisa");
         }
 
@@ -2357,113 +4236,13 @@ public class UserController {
         }
     }
 
-    private class kotak4Listener implements MouseListener {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-            System.out.println("bisa");
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
-    }
-
-    private class kotak3Listener implements MouseListener {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-            System.out.println("bisa");
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
-    }
-
-    private class kotak2Listener implements MouseListener {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-            System.out.println("bisa");
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
-    }
-
-    private class kotak1Listener implements MouseListener {
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-            System.out.println("bisa");
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
-    }
-
     private class KembaliBermainMouseListener implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
             try {
                 new UserController(mulai, userM);
-                stopTimer();
+//                stopTimer();
                 bermain1.dispose();
             } catch (SQLException ex) {
                 Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
@@ -2493,7 +4272,32 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
+            if (level[3]) {
+                bermain1.getButton_kotak12().setEnabled(false);
+                bermain1.getButton_kotak11().setEnabled(false);
+                bermain1.getButton_kotak10().setEnabled(false);
+            } else if (level[2]) {
+                bermain1.getButton_kotak12().setEnabled(false);
+                bermain1.getButton_kotak11().setEnabled(false);
+                bermain1.getButton_kotak10().setEnabled(false);
+                bermain1.getButton_kotak9().setEnabled(false);
+            } else if (level[1]) {
+                bermain1.getButton_kotak12().setEnabled(false);
+                bermain1.getButton_kotak11().setEnabled(false);
+                bermain1.getButton_kotak10().setEnabled(false);
+                bermain1.getButton_kotak9().setEnabled(false);
+                bermain1.getButton_kotak8().setEnabled(false);
+                bermain1.getButton_kotak7().setEnabled(false);
+            } else if (level[0]) {
+                bermain1.getButton_kotak12().setEnabled(false);
+                bermain1.getButton_kotak11().setEnabled(false);
+                bermain1.getButton_kotak10().setEnabled(false);
+                bermain1.getButton_kotak9().setEnabled(false);
+                bermain1.getButton_kotak8().setEnabled(false);
+                bermain1.getButton_kotak7().setEnabled(false);
+                bermain1.getButton_kotak6().setEnabled(false);
+                bermain1.getButton_kotak5().setEnabled(false);
+            }
             try {
                 new UserController(bermain1, userM);
                 mulai.dispose();
