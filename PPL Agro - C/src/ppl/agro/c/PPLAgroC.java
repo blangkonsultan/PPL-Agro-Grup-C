@@ -15,7 +15,7 @@ public class PPLAgroC {
         BermainView bermain = new BermainView();
         MulaiView mulai = new MulaiView();
         UserModel userM = new UserModel();
-        new UserController(mulai, userM);
+        UserController uc = UserController.getInstance();
 
     }
 

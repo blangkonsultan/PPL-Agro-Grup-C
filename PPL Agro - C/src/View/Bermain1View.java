@@ -5,6 +5,8 @@
  */
 package View;
 
+import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,11 +20,16 @@ public class Bermain1View extends javax.swing.JFrame {
     /**
      * Creates new form Bermain2View
      */
+    
+    CardLayout cl;
     public Bermain1View() {
         initComponents();
         setLocationRelativeTo(null);
+       
+        
+        
     }
-
+    
     public void KembaliMouseListener(MouseListener l) {
         this.Button_kembali.addMouseListener(l);
     }
@@ -236,7 +243,6 @@ public class Bermain1View extends javax.swing.JFrame {
     }
 
     public JButton getButton_Shop() {
-
         return Button_Shop;
     }
 
@@ -737,6 +743,7 @@ public class Bermain1View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lvl1 = new javax.swing.JPanel();
         bintangKecil = new javax.swing.JLabel();
         bintangKecil1 = new javax.swing.JLabel();
         bintangKecil2 = new javax.swing.JLabel();
@@ -801,48 +808,50 @@ public class Bermain1View extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new java.awt.FlowLayout());
+
+        lvl1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bintangKecil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bintangKecil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/bintang kecil.gif"))); // NOI18N
-        getContentPane().add(bintangKecil, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 30, 20));
+        lvl1.add(bintangKecil, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 30, 20));
 
         bintangKecil1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bintangKecil1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/bintang kecil.gif"))); // NOI18N
-        getContentPane().add(bintangKecil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 30, 20));
+        lvl1.add(bintangKecil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 30, 20));
 
         bintangKecil2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bintangKecil2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/bintang kecil.gif"))); // NOI18N
-        getContentPane().add(bintangKecil2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 30, 20));
+        lvl1.add(bintangKecil2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 30, 20));
 
         Button_kembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/back-01.png"))); // NOI18N
         Button_kembali.setBorderPainted(false);
         Button_kembali.setContentAreaFilled(false);
         Button_kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_kembali.setFocusable(false);
-        getContentPane().add(Button_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, -1));
+        lvl1.add(Button_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, -1));
 
         Label_level.setFont(new java.awt.Font("Showcard Gothic", 0, 48)); // NOI18N
         Label_level.setForeground(new java.awt.Color(255, 255, 255));
         Label_level.setText("Level 01");
-        getContentPane().add(Label_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
+        lvl1.add(Label_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
 
         Label_Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/status_bintang.png"))); // NOI18N
-        getContentPane().add(Label_Star, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
+        lvl1.add(Label_Star, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
 
         Button_air.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/alat_siram1.png"))); // NOI18N
         Button_air.setBorderPainted(false);
         Button_air.setContentAreaFilled(false);
         Button_air.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_air.setFocusable(false);
-        getContentPane().add(Button_air, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 670, 90, 90));
+        lvl1.add(Button_air, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 670, 90, 90));
 
         Button_pupuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/pupuk1.png"))); // NOI18N
         Button_pupuk.setBorderPainted(false);
         Button_pupuk.setContentAreaFilled(false);
         Button_pupuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_pupuk.setFocusable(false);
-        getContentPane().add(Button_pupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 670, 90, 90));
+        lvl1.add(Button_pupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 670, 90, 90));
 
         Button_tas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tas.png"))); // NOI18N
         Button_tas.setBorderPainted(false);
@@ -854,134 +863,134 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_tasActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_tas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 700, 70, 60));
+        lvl1.add(Button_tas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 700, 70, 60));
 
         Button_Shop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/shop1.png"))); // NOI18N
         Button_Shop.setBorderPainted(false);
         Button_Shop.setContentAreaFilled(false);
         Button_Shop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Button_Shop.setFocusable(false);
-        getContentPane().add(Button_Shop, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 670, 90, -1));
+        lvl1.add(Button_Shop, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 670, 90, -1));
 
         Label_jmlUang.setFont(new java.awt.Font("Niagara Engraved", 1, 48)); // NOI18N
         Label_jmlUang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Label_jmlUang.setToolTipText("");
-        getContentPane().add(Label_jmlUang, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 170, 50));
+        lvl1.add(Label_jmlUang, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 170, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/dollar.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
+        lvl1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak_uang.png"))); // NOI18N
         jLabel3.setToolTipText("");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        lvl1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         Label_pohon1_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon1_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, -20, -1, -1));
+        lvl1.add(Label_pohon1_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, -20, -1, -1));
 
         Label_pohon2_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon2_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
+        lvl1.add(Label_pohon2_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
 
         Label_pohon3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon3_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 170, 180, -1));
+        lvl1.add(Label_pohon3_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 170, 180, -1));
 
         Label_pohon4_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon4_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+        lvl1.add(Label_pohon4_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
 
         Label_pohon5_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon5_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
+        lvl1.add(Label_pohon5_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
 
         Label_pohon6_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon6_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, -1));
+        lvl1.add(Label_pohon6_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, -1));
 
         Label_pohon7_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon7_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
+        lvl1.add(Label_pohon7_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
         Label_pohon8_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon8_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, -1, -1));
+        lvl1.add(Label_pohon8_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, -1, -1));
 
         Label_pohon9_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon9_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, -1, -1));
+        lvl1.add(Label_pohon9_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 380, -1, -1));
 
         Label_pohon10_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon10_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        lvl1.add(Label_pohon10_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
         Label_pohon11_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon11_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
+        lvl1.add(Label_pohon11_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
 
         Label_pohon12_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati3.png"))); // NOI18N
-        getContentPane().add(Label_pohon12_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
+        lvl1.add(Label_pohon12_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
 
         Label_pohon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
+        lvl1.add(Label_pohon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
 
         Label_pohon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, -1, -1));
+        lvl1.add(Label_pohon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, -1, -1));
 
         Label_pohon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, -1, -1));
+        lvl1.add(Label_pohon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, -1, -1));
 
         Label_pohon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, -1, -1));
+        lvl1.add(Label_pohon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, -1, -1));
 
         Label_pohon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 280, -1, -1));
+        lvl1.add(Label_pohon5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 280, -1, -1));
 
         Label_pohon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, -1, -1));
+        lvl1.add(Label_pohon6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, -1, -1));
 
         Label_pohon7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        lvl1.add(Label_pohon7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
         Label_pohon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
+        lvl1.add(Label_pohon8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
         Label_pohon9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, -1, -1));
+        lvl1.add(Label_pohon9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, -1, -1));
 
         Label_pohon10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
+        lvl1.add(Label_pohon10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, -1));
 
         Label_pohon11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, -1, -1));
+        lvl1.add(Label_pohon11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, -1, -1));
 
         Label_pohon12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Pertumbuhan/pohon_jati1.png"))); // NOI18N
-        getContentPane().add(Label_pohon12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 580, -1, -1));
+        lvl1.add(Label_pohon12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 580, -1, -1));
 
         Label_tanah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, -1, -1));
+        lvl1.add(Label_tanah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, -1, -1));
 
         Label_tanah2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, -1, 30));
+        lvl1.add(Label_tanah2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 260, -1, 30));
 
         Label_tanah3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 360, -1, -1));
+        lvl1.add(Label_tanah3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 360, -1, -1));
 
         Label_tanah4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, -1));
+        lvl1.add(Label_tanah4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, -1));
 
         Label_tanah5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 360, -1, -1));
+        lvl1.add(Label_tanah5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 360, -1, -1));
 
         Label_tanah6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, -1, -1));
+        lvl1.add(Label_tanah6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, -1, -1));
 
         Label_tanah7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
+        lvl1.add(Label_tanah7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
 
         Label_tanah8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
+        lvl1.add(Label_tanah8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 460, -1, -1));
 
         Label_tanah9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 560, -1, -1));
+        lvl1.add(Label_tanah9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 560, -1, -1));
 
         Label_tanah10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, -1, -1));
+        lvl1.add(Label_tanah10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, -1, -1));
 
         Label_tanah11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, -1, -1));
+        lvl1.add(Label_tanah11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 570, -1, -1));
 
         Label_tanah12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/tanah.png"))); // NOI18N
-        getContentPane().add(Label_tanah12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 660, -1, -1));
+        lvl1.add(Label_tanah12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 660, -1, -1));
 
         Button_kotak1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak1.setBorderPainted(false);
@@ -993,7 +1002,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak1ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
+        lvl1.add(Button_kotak1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
 
         Button_kotak2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak2.setBorderPainted(false);
@@ -1005,7 +1014,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak2ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
+        lvl1.add(Button_kotak2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
 
         Button_kotak3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak3.setBorderPainted(false);
@@ -1017,7 +1026,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak3ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, -1, -1));
+        lvl1.add(Button_kotak3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, -1, -1));
 
         Button_kotak4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak4.setBorderPainted(false);
@@ -1029,7 +1038,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak4ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        lvl1.add(Button_kotak4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
 
         Button_kotak5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak5.setBorderPainted(false);
@@ -1041,7 +1050,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak5ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, -1, -1));
+        lvl1.add(Button_kotak5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, -1, -1));
 
         Button_kotak6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak6.setBorderPainted(false);
@@ -1053,7 +1062,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak6ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, -1, -1));
+        lvl1.add(Button_kotak6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 430, -1, -1));
 
         Button_kotak7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak7.setBorderPainted(false);
@@ -1065,7 +1074,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak7ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
+        lvl1.add(Button_kotak7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
 
         Button_kotak8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak8.setBorderPainted(false);
@@ -1077,7 +1086,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak8ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, -1, -1));
+        lvl1.add(Button_kotak8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, -1, -1));
 
         Button_kotak9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak9.setBorderPainted(false);
@@ -1089,7 +1098,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak9ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 530, -1, -1));
+        lvl1.add(Button_kotak9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 530, -1, -1));
 
         Button_kotak10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak10.setBorderPainted(false);
@@ -1101,7 +1110,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak10ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+        lvl1.add(Button_kotak10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
         Button_kotak11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak11.setBorderPainted(false);
@@ -1113,7 +1122,7 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak11ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, -1, -1));
+        lvl1.add(Button_kotak11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, -1, -1));
 
         Button_kotak12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak.png"))); // NOI18N
         Button_kotak12.setBorderPainted(false);
@@ -1125,10 +1134,12 @@ public class Bermain1View extends javax.swing.JFrame {
                 Button_kotak12ActionPerformed(evt);
             }
         });
-        getContentPane().add(Button_kotak12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 630, -1, -1));
+        lvl1.add(Button_kotak12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 630, -1, -1));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/lahan5-1.png"))); // NOI18N
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lvl1.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(lvl1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1249,5 +1260,6 @@ public class Bermain1View extends javax.swing.JFrame {
     private javax.swing.JLabel bintangKecil2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel lvl1;
     // End of variables declaration//GEN-END:variables
 }

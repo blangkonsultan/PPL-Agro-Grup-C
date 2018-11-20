@@ -448,7 +448,7 @@ public class Bermain2View extends javax.swing.JFrame {
 
         Label_level.setFont(new java.awt.Font("Showcard Gothic", 0, 48)); // NOI18N
         Label_level.setForeground(new java.awt.Color(255, 255, 255));
-        Label_level.setText("Level 01");
+        Label_level.setText("Level 02");
         getContentPane().add(Label_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 50));
 
         Label_Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/status_bintang.png"))); // NOI18N
