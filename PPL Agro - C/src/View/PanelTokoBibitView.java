@@ -203,7 +203,7 @@ public class PanelTokoBibitView extends javax.swing.JPanel {
         Button_BibitPinus.setFocusable(false);
         add(Button_BibitPinus, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 90, 160));
 
-        Button_BibitKaret.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Toko/pohon sakura.png"))); // NOI18N
+        Button_BibitKaret.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Toko/bibit_karet.png"))); // NOI18N
         Button_BibitKaret.setBorderPainted(false);
         Button_BibitKaret.setContentAreaFilled(false);
         Button_BibitKaret.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

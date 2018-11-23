@@ -7,17 +7,17 @@ package Controller;
 
 import Model.UserModel;
 import View.AwalView;
+import View.BantuanView;
 import View.Bermain1View;
-import View.Bermain2View;
-import View.BermainView;
 import View.MulaiView;
 import View.NewGameView;
 import View.PanelTokoAirView;
 import View.PanelTokoBibitView;
 import View.PanelTokoPupukView;
 import View.PopUpAssetView;
+import View.PopUpHegaView;
 import View.PopUpKeluarView;
-import View.PopUpKotakMisteri;
+import View.PopUpKotakMisteriView;
 import View.PopUpKotakMisteri1;
 import View.PopUpMasukkanNamaView;
 import View.PopUpPilihHutanView;
@@ -47,12 +47,13 @@ import sun.security.pkcs11.Secmod;
  * @author adheraprabu
  */
 public class UserController {
-    
+
     private static UserController uc;
 
     UserModel userM;
     AwalView awal = new AwalView();
     TentangView tentang = new TentangView();
+    BantuanView bantuan = new BantuanView();
     MulaiView mulai = new MulaiView();
     NewGameView newGame = new NewGameView();
     Bermain1View bermain1 = new Bermain1View();
@@ -62,37 +63,38 @@ public class UserController {
     PopUpAssetView dialogAsset;
     PopUpShopView dialogToko;
     PopUpUangKurangView dialogUangKurang;
-    PopUpKotakMisteri dialogKotakMisteri;
+    PopUpKotakMisteriView dialogKotakMisteri;
     PopUpKotakMisteri1 dialogKotakMisteri1;
+    PopUpHegaView dialogHega;
     GridBagLayout layout = new GridBagLayout();
     PanelTokoAirView tokoAir = new PanelTokoAirView();
     PanelTokoPupukView tokoPupuk = new PanelTokoPupukView();
     PanelTokoBibitView tokoBibit = new PanelTokoBibitView();
-    static boolean level[] = {true, false, false, false, false};
-    int air[] = {3, 0};// index pertama air saat ini, index kedua yg akan dibeli
+    public static boolean level[] = {true, false, false, false, false};
+    static boolean misi[] = {false, false, false, false, false, false, false, false, false, false,};
+    public static int air[] = {2, 0};// index pertama air saat ini, index kedua yg akan dibeli
     int hargaAir = 5;
     int hargaPupuk = 15;
     int bintang = 0;
-    int pupuke[] = {3, 0};// index pertama pupuk saat ini, index kedua yg akan dibeli
-    int bibit[] = {5, 5, 5, 5, 5, 5, 5, 5};//jumlah bibit tiap pohon
+    public static int pupuke[] = {2, 0};// index pertama pupuk saat ini, index kedua yg akan dibeli
+    public static int bibit[] = {1, 1, 1, 1, 1, 1, 1, 1};//jumlah bibit tiap pohon
     //karet,pilang, cemara,kapur,pinus,kayu hitam, kayu besi,jati
-//    int bibitbeli[] = {0, 0, 0, 0, 0, 0, 0, 0};//bibit yg akan dibeli
     int[] sekonTumbuh = new int[11];
-    byte[] kotakAktif = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    static byte[] kotakAktif = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public static String username = "";
     Timer time;
     static byte hutan = 0;
-    int uang = 100;
+    public static int uang = 0;
     boolean siram = false;
     boolean pupuk = false;
 
-    private UserController(AwalView awal, UserModel userM) throws SQLException {
+    public UserController(AwalView awal, UserModel userM) throws SQLException {
         this.userM = new UserModel();
         //Constructor untuk memanggil frame Awal
         this.awal = awal;
         this.userM = userM;
         awal.setVisible(true);
-        
+
         awal.MulaiMouseListener(new MulaiMouseListenner());
         awal.BantuanMouseListener(new BantuanMouseListener());
         awal.TentangMouseListener(new TentangMouseListenner());
@@ -113,6 +115,14 @@ public class UserController {
         this.userM = userM;
         tentang.setVisible(true);
         tentang.KembaliMouseListener(new KembaliTentangMouseListenner());
+    }
+
+    private UserController(BantuanView bantuan, UserModel userM) throws SQLException {
+        this.userM = new UserModel();
+        this.bantuan = bantuan;
+        this.userM = userM;
+        bantuan.setVisible(true);
+        bantuan.TutupMouseListener(new TutupBantuanMouseListenner());
     }
 
     private UserController(MulaiView mulai, UserModel userM) throws SQLException {
@@ -143,12 +153,28 @@ public class UserController {
         newGame.MulaiBaruMouseListener(new MulaiBaruMouseLisener());
         newGame.LanjutkanMouseListener(new LanjutkanMouseLitener());
 
+        dialogHega = new PopUpHegaView(newGame, true);
+        dialogHega.NextMouseListener(new NextHegaListener());
+
     }
 
     private UserController(Bermain1View bermain1, UserModel userM) throws SQLException {
         this.userM = new UserModel();
         this.bermain1 = bermain1;
         this.userM = userM;
+
+        kotakAktif[0] = 0;
+        kotakAktif[1] = 0;
+        kotakAktif[2] = 0;
+        kotakAktif[3] = 0;
+        kotakAktif[4] = 0;
+        kotakAktif[5] = 0;
+        kotakAktif[6] = 0;
+        kotakAktif[7] = 0;
+        kotakAktif[8] = 0;
+        kotakAktif[9] = 0;
+        kotakAktif[10] = 0;
+        kotakAktif[11] = 0;
         bermain1.setVisible(true);
         bermain1.getLabel_tanah1().setVisible(false);
         bermain1.getLabel_tanah2().setVisible(false);
@@ -197,38 +223,38 @@ public class UserController {
         bermain1.Pohon2_2MouseListener(new Pohon2_2Lvl1Listener());
         bermain1.Pohon3_2MouseListener(new Pohon3_2Lvl1Listener());
         bermain1.Pohon4_2MouseListener(new Pohon4_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon5_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon6_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon7_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon8_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon9_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon10_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon11_2Lvl1Listener());
-        bermain1.Pohon4_2MouseListener(new Pohon12_2Lvl1Listener());
+        bermain1.Pohon5_2MouseListener(new Pohon5_2Lvl1Listener());
+        bermain1.Pohon6_2MouseListener(new Pohon6_2Lvl1Listener());
+        bermain1.Pohon7_2MouseListener(new Pohon7_2Lvl1Listener());
+        bermain1.Pohon8_2MouseListener(new Pohon8_2Lvl1Listener());
+        bermain1.Pohon9_2MouseListener(new Pohon9_2Lvl1Listener());
+        bermain1.Pohon10_2MouseListener(new Pohon10_2Lvl1Listener());
+        bermain1.Pohon11_2MouseListener(new Pohon11_2Lvl1Listener());
+        bermain1.Pohon12_2MouseListener(new Pohon12_2Lvl1Listener());
         bermain1.Pohon1MouseListener(new Pohon1Lvl1Listener());
         bermain1.Pohon2MouseListener(new Pohon2Lvl1Listener());
         bermain1.Pohon3MouseListener(new Pohon3Lvl1Listener());
         bermain1.Pohon4MouseListener(new Pohon4Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon5Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon6Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon7Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon8Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon9Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon10Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon11Lvl1Listener());
-        bermain1.Pohon4MouseListener(new Pohon12Lvl1Listener());
+        bermain1.Pohon5MouseListener(new Pohon5Lvl1Listener());
+        bermain1.Pohon6MouseListener(new Pohon6Lvl1Listener());
+        bermain1.Pohon7MouseListener(new Pohon7Lvl1Listener());
+        bermain1.Pohon8MouseListener(new Pohon8Lvl1Listener());
+        bermain1.Pohon9MouseListener(new Pohon9Lvl1Listener());
+        bermain1.Pohon10MouseListener(new Pohon10Lvl1Listener());
+        bermain1.Pohon11MouseListener(new Pohon11Lvl1Listener());
+        bermain1.Pohon12MouseListener(new Pohon12Lvl1Listener());
         bermain1.Tanah1MouseListener(new Tanah1Lvl1Listener());
         bermain1.Tanah2MouseListener(new Tanah2Lvl1Listener());
         bermain1.Tanah3MouseListener(new Tanah3Lvl1Listener());
         bermain1.Tanah4MouseListener(new Tanah4Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah5Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah6Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah7Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah8Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah9Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah10Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah11Lvl1Listener());
-        bermain1.Tanah4MouseListener(new Tanah12Lvl1Listener());
+        bermain1.Tanah5MouseListener(new Tanah5Lvl1Listener());
+        bermain1.Tanah6MouseListener(new Tanah6Lvl1Listener());
+        bermain1.Tanah7MouseListener(new Tanah7Lvl1Listener());
+        bermain1.Tanah8MouseListener(new Tanah8Lvl1Listener());
+        bermain1.Tanah9MouseListener(new Tanah9Lvl1Listener());
+        bermain1.Tanah10MouseListener(new Tanah10Lvl1Listener());
+        bermain1.Tanah11MouseListener(new Tanah11Lvl1Listener());
+        bermain1.Tanah12MouseListener(new Tanah12Lvl1Listener());
 
         dialogAsset = new PopUpAssetView(bermain1, true);
         dialogAsset.CloseMouseListener(new CloseListener());
@@ -269,21 +295,37 @@ public class UserController {
         dialogUangKurang = new PopUpUangKurangView(bermain1, true);
         dialogUangKurang.TutupMouseListener(new TutupUangKurang());
 
-        dialogKotakMisteri = new PopUpKotakMisteri(bermain1, true);
-        dialogKotakMisteri.OKMouseListener(new OkKotakMisteri1());
+        dialogKotakMisteri = new PopUpKotakMisteriView(bermain1, true);
+        dialogKotakMisteri.OKMouseListener(new OkKotakMisteri());
 
     }
 
-    public static UserController getInstance() throws SQLException{
-        if(uc == null){
+    public static UserController getInstance() throws SQLException {
+        if (uc == null) {
             uc = new UserController(new MulaiView(), new UserModel());
         }
-        
+
         return uc;
     }
-    
+
     private void nextLevel() {
-        if (level[3] && level[2] && level[1] && level[0]) {
+        if (level[4]) {
+            bermain1.getLabel_bintang().setText(Integer.toString(bintang));
+            bermain1.getLabel_level().setText("Level 05");
+            bermain1.getLabel_bintangDasar().setText("/ 30");
+            bermain1.getButton_kotak12().setEnabled(true);
+            bermain1.getButton_kotak11().setEnabled(true);
+            bermain1.getButton_kotak10().setEnabled(true);
+            bermain1.getButton_kotak9().setEnabled(true);
+            bermain1.getButton_kotak8().setEnabled(true);
+            bermain1.getButton_kotak7().setEnabled(true);
+            bermain1.getButton_kotak6().setEnabled(true);
+            bermain1.getButton_kotak5().setEnabled(true);
+        }
+        if (level[3]) {
+            bermain1.getLabel_bintang().setText(Integer.toString(bintang));
+            bermain1.getLabel_level().setText("Level 04");
+            bermain1.getLabel_bintangDasar().setText("/ 24");
             bermain1.getButton_kotak12().setEnabled(false);
             bermain1.getButton_kotak11().setEnabled(false);
             bermain1.getButton_kotak10().setEnabled(false);
@@ -292,7 +334,11 @@ public class UserController {
             bermain1.getButton_kotak7().setEnabled(true);
             bermain1.getButton_kotak6().setEnabled(true);
             bermain1.getButton_kotak5().setEnabled(true);
-        }  if (level[2] && level[1] && level[0]) {
+        }
+        if (level[2]) {
+            bermain1.getLabel_bintang().setText(Integer.toString(bintang));
+            bermain1.getLabel_level().setText("Level 03");
+            bermain1.getLabel_bintangDasar().setText("/ 18");
             bermain1.getButton_kotak12().setEnabled(false);
             bermain1.getButton_kotak11().setEnabled(false);
             bermain1.getButton_kotak10().setEnabled(false);
@@ -301,8 +347,13 @@ public class UserController {
             bermain1.getButton_kotak7().setEnabled(true);
             bermain1.getButton_kotak6().setEnabled(true);
             bermain1.getButton_kotak5().setEnabled(true);
-        } if (level[1]==true && level[0]==false) {
+        }
+        if (level[1]) {
             System.out.println("123");
+//            bermain1.getLabel_level().setText();
+            bermain1.getLabel_bintang().setText(Integer.toString(bintang));
+            bermain1.getLabel_level().setText("Level 02");
+            bermain1.getLabel_bintangDasar().setText("/ 10");
             bermain1.getButton_kotak12().setEnabled(false);
             bermain1.getButton_kotak11().setEnabled(false);
             bermain1.getButton_kotak10().setEnabled(false);
@@ -311,8 +362,12 @@ public class UserController {
             bermain1.getButton_kotak7().setEnabled(false);
             bermain1.getButton_kotak6().setEnabled(true);
             bermain1.getButton_kotak5().setEnabled(true);
-        }  if (level[0]) {
+        }
+        if (level[0]) {
             System.out.println("sds");
+            bermain1.getLabel_bintang().setText(Integer.toString(bintang));
+            bermain1.getLabel_level().setText("Level 01");
+            bermain1.getLabel_bintangDasar().setText("/ 6");
             bermain1.getButton_kotak12().setEnabled(false);
             bermain1.getButton_kotak11().setEnabled(false);
             bermain1.getButton_kotak10().setEnabled(false);
@@ -388,7 +443,8 @@ public class UserController {
                 bibit[6] += 1;
                 uang -= 80;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
-                dialogAsset.getLabel_jmlPohonKayuBesi().setText(Integer.toString(bibit[6]));
+
+                dialogAsset.getLabel_jmlPohonJati().setText(Integer.toString(bibit[6]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
                 dialogUangKurang.setVisible(true);
@@ -398,7 +454,7 @@ public class UserController {
                 bibit[7] += 1;
                 uang -= 75;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
-                dialogAsset.getLabel_jmlPohonJati().setText(Integer.toString(bibit[7]));
+                dialogAsset.getLabel_jmlPohonKayuBesi().setText(Integer.toString(bibit[7]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
                 dialogUangKurang.setVisible(true);
@@ -620,6 +676,7 @@ public class UserController {
             kotakAktif[0] = 0;
             //Bintang Muncul
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
 
         if (bermain1.getLabel_pohon2_2().isVisible() && lahan == 2) {
@@ -630,6 +687,7 @@ public class UserController {
             bermain1.getLabel_tanah2().setVisible(false);
             kotakAktif[1] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
 
         if (bermain1.getLabel_pohon3_2().isVisible() && lahan == 3) {
@@ -640,6 +698,7 @@ public class UserController {
             bermain1.getLabel_tanah3().setVisible(false);
             kotakAktif[2] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
 
         if (bermain1.getLabel_pohon4_2().isVisible() && lahan == 4) {
@@ -650,8 +709,9 @@ public class UserController {
             bermain1.getLabel_tanah4().setVisible(false);
             kotakAktif[3] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
-        
+
         if (bermain1.getLabel_pohon5_2().isVisible() && lahan == 5) {
             uang += 100;
             bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
@@ -660,6 +720,7 @@ public class UserController {
             bermain1.getLabel_tanah5().setVisible(false);
             kotakAktif[4] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
 
         if (bermain1.getLabel_pohon6_2().isVisible() && lahan == 6) {
@@ -670,8 +731,9 @@ public class UserController {
             bermain1.getLabel_tanah6().setVisible(false);
             kotakAktif[5] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
-        
+
         if (bermain1.getLabel_pohon7_2().isVisible() && lahan == 7) {
             uang += 100;
             bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
@@ -680,8 +742,9 @@ public class UserController {
             bermain1.getLabel_tanah7().setVisible(false);
             kotakAktif[6] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
-        
+
         if (bermain1.getLabel_pohon8_2().isVisible() && lahan == 8) {
             uang += 100;
             bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
@@ -690,6 +753,7 @@ public class UserController {
             bermain1.getLabel_tanah8().setVisible(false);
             kotakAktif[7] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
         if (bermain1.getLabel_pohon9_2().isVisible() && lahan == 9) {
             uang += 100;
@@ -699,6 +763,7 @@ public class UserController {
             bermain1.getLabel_tanah9().setVisible(false);
             kotakAktif[8] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
         if (bermain1.getLabel_pohon10_2().isVisible() && lahan == 10) {
             uang += 100;
@@ -708,6 +773,7 @@ public class UserController {
             bermain1.getLabel_tanah10().setVisible(false);
             kotakAktif[9] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
         if (bermain1.getLabel_pohon11_2().isVisible() && lahan == 11) {
             uang += 100;
@@ -726,8 +792,9 @@ public class UserController {
             bermain1.getLabel_tanah12().setVisible(false);
             kotakAktif[11] = 0;
             bintang += 1;
+            bermain1.getLabel_bintang().setText(Integer.toHexString(bintang));
         }
-        
+
         try {
             menang();
         } catch (SQLException ex) {
@@ -735,18 +802,258 @@ public class UserController {
         }
     }
 
+    private void pertumbuhan(int hutans, String pohon1, String pohon2) {
+        if (kotakAktif[0] == 0 && bermain1.getButton_kotak1().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[0] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[0] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[0] = 1;
+        } else if (kotakAktif[1] == 0 && bermain1.getButton_kotak2().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[1] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[1] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[1] = 1;
+        } else if (kotakAktif[2] == 0 && bermain1.getButton_kotak3().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[2] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[2] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[2] = 1;
+        } else if (kotakAktif[3] == 0 && bermain1.getButton_kotak4().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[3] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[3] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[3] = 1;
+        } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[4] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[4] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[4] = 1;
+        } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon6(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon6_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[5] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[5] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[5] = 1;
+        } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon7(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon7_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[6] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[6] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[6] = 1;
+        } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon8(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon8_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[7] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[7] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[7] = 1;
+        } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon9(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon9_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[8] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[8] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[8] = 1;
+        } else if (kotakAktif[9] == 0 && bermain1.getButton_kotak10().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon10(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon10_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[9] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[9] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[9] = 1;
+        } else if (kotakAktif[10] == 0 && bermain1.getButton_kotak11().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon11(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon11_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[10] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[10] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[10] = 1;
+        } else if (kotakAktif[11] == 0 && bermain1.getButton_kotak12().isEnabled()) {
+            setIconLabel(bermain1.getLabel_pohon12(), "/View/Pertumbuhan/" + pohon1);
+            setIconLabel(bermain1.getLabel_pohon12_2(), "/View/Pertumbuhan/" + pohon2);
+            if (hutan == hutans) {
+                System.out.println("bentar");
+                sekonTumbuh[11] = 40;
+            } else {
+                System.out.println("lama");
+                sekonTumbuh[11] = 180;
+            }
+            tanam("bermain1");
+            kotakAktif[11] = 1;
+        } else {
+            JOptionPane.showMessageDialog(bermain1, "lahan Penuh!");
+        }
+    }
+
     private void menang() throws SQLException {
 
-        if (level[0] && bintang == 3) {
-            dialogKotakMisteri.setVisible(true);
-            //True & False Level
-//            level[1] = true;
-//            level[0]=false;
-//            System.out.println(level[0]+"<"+level[1]);
-           } 
-//else if(level[1] && bintang == 5){
-//            dialogKotakMisteri1.setVisible(true);
-//        }
+        if (level[0] && bintang == 6) {
+            if (hutan == 1) {
+                misi[0] = true;
+            } else {
+                misi[1] = true;
+            }
+            System.out.println(" misi[0]" + misi[0]);
+            System.out.println(" misi[1]" + misi[1]);
+            if (misi[0] && misi[1]) {
+                level[0] = false;
+                level[1] = true;
+                userM.updatebibit(username);
+                userM.updatelevel(username);
+                userM.updatepupukair(username);
+                userM.updateuang(username);
+                dialogKotakMisteri.setVisible(true);
+            } else {
+                new UserController(mulai, userM);
+                bermain1.dispose();
+            }
+            bintang = 0;
+        } else if (level[1] && bintang == 10 && misi[0] && misi[1]) {
+
+            if (hutan == 1) {
+                misi[2] = true;
+            } else {
+                misi[3] = true;
+            }
+            if (misi[2] && misi[3]) {
+                level[1] = false;
+                level[2] = true;
+                userM.updatebibit(username);
+                userM.updatelevel(username);
+                userM.updatepupukair(username);
+                userM.updateuang(username);
+                dialogKotakMisteri.setVisible(true);
+            } else {
+                new UserController(mulai, userM);
+                bermain1.dispose();
+            }
+            bintang = 0;
+        } else if (level[2] && bintang == 18 && misi[2] && misi[3]) {
+
+            if (hutan == 1) {
+                misi[4] = true;
+            } else {
+                misi[5] = true;
+            }
+            bintang = 0;
+            if (misi[4] && misi[5]) {
+                level[2] = false;
+                level[3] = true;
+                userM.updatebibit(username);
+                userM.updatelevel(username);
+                userM.updatepupukair(username);
+                userM.updateuang(username);
+                dialogKotakMisteri.setVisible(true);
+            } else {
+                new UserController(mulai, userM);
+                bermain1.dispose();
+            }
+        } else if (level[3] && bintang == 24 && misi[4] && misi[5]) {
+
+            if (hutan == 1) {
+                misi[6] = true;
+            } else {
+                misi[7] = true;
+            }
+            bintang = 0;
+            if (misi[6] && misi[7]) {
+                level[3] = false;
+                level[4] = true;
+                userM.updatebibit(username);
+                userM.updatelevel(username);
+                userM.updatepupukair(username);
+                userM.updateuang(username);
+                dialogKotakMisteri.setVisible(true);
+            } else {
+                new UserController(mulai, userM);
+                bermain1.dispose();
+            }
+        } else if (level[4] && bintang == 30 && misi[6] && misi[7]) {
+
+            if (hutan == 1) {
+                misi[8] = true;
+            } else {
+                misi[9] = true;
+            }
+            bintang = 0;
+            if (misi[8] && misi[9]) {
+                userM.updatebibit(username);
+                userM.updatelevel(username);
+                userM.updatepupukair(username);
+                userM.updateuang(username);
+                dialogKotakMisteri.setVisible(true);
+            } else {
+                new UserController(mulai, userM);
+                bermain1.dispose();
+            }
+        }
     }
 
     private void setIcon(JButton button, String resource) {
@@ -765,8 +1072,8 @@ public class UserController {
         dialogAsset.getLabel_jmlPohonKapur().setText(Integer.toString(bibit[3]));
         dialogAsset.getLabel_jmlPohonPinus().setText(Integer.toString(bibit[4]));
         dialogAsset.getLabel_jmlPohonKayuHitam().setText(Integer.toString(bibit[5]));
-        dialogAsset.getLabel_jmlPohonKayuBesi().setText(Integer.toString(bibit[6]));
-        dialogAsset.getLabel_jmlPohonJati().setText(Integer.toString(bibit[7]));
+        dialogAsset.getLabel_jmlPohonJati().setText(Integer.toString(bibit[6]));
+        dialogAsset.getLabel_jmlPohonKayuBesi().setText(Integer.toString(bibit[7]));
         if (frame.equalsIgnoreCase("bermain1")) {
             if (!bermain1.getLabel_tanah1().isVisible()) {
                 bermain1.getLabel_tanah1().setVisible(true);
@@ -814,7 +1121,7 @@ public class UserController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (lahan == 1) {
-                    System.out.println("sekon 1 :" + sekonTumbuh[0]);
+//                    System.out.println("sekon 1 :" + sekonTumbuh[0]);
                     sekonTumbuh[0]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[0] <= 20) {
@@ -923,7 +1230,7 @@ public class UserController {
                     }
 
                 } else if (lahan == 2) {
-                    System.out.println("sekon 2 :" + sekonTumbuh[1]);
+//                    System.out.println("sekon 2 :" + sekonTumbuh[1]);
                     sekonTumbuh[1]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[1] <= 20) {
@@ -1029,7 +1336,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 3) {
-                    System.out.println("sekon 3 :" + sekonTumbuh[2]);
+//                    System.out.println("sekon 3 :" + sekonTumbuh[2]);
                     sekonTumbuh[2]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[2] <= 20) {
@@ -1135,7 +1442,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 4) {
-                    System.out.println("sekon 4 :" + sekonTumbuh[3]);
+//                    System.out.println("sekon 4 :" + sekonTumbuh[3]);
                     sekonTumbuh[3]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[3] <= 20) {
@@ -1241,7 +1548,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 5) {
-                    System.out.println("sekon 5 :" + sekonTumbuh[4]);
+//                    System.out.println("sekon 5 :" + sekonTumbuh[4]);
                     sekonTumbuh[4]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[4] <= 20) {
@@ -1347,7 +1654,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 6) {
-                    System.out.println("sekon 6 :" + sekonTumbuh[5]);
+//                    System.out.println("sekon 6 :" + sekonTumbuh[5]);
                     sekonTumbuh[5]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[5] <= 20) {
@@ -1453,7 +1760,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 7) {
-                    System.out.println("sekon 7 :" + sekonTumbuh[6]);
+//                    System.out.println("sekon 7 :" + sekonTumbuh[6]);
                     sekonTumbuh[6]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[6] <= 20) {
@@ -1559,7 +1866,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 8) {
-                    System.out.println("sekon 8 :" + sekonTumbuh[7]);
+//                    System.out.println("sekon 8 :" + sekonTumbuh[7]);
                     sekonTumbuh[7]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[7] <= 20) {
@@ -1665,7 +1972,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 9) {
-                    System.out.println("sekon 9 :" + sekonTumbuh[8]);
+//                    System.out.println("sekon 9 :" + sekonTumbuh[8]);
                     sekonTumbuh[8]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[8] <= 20) {
@@ -1771,7 +2078,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 10) {
-                    System.out.println("sekon 10 :" + sekonTumbuh[9]);
+//                    System.out.println("sekon 10 :" + sekonTumbuh[9]);
                     sekonTumbuh[9]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[9] <= 20) {
@@ -1877,7 +2184,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 11) {
-                    System.out.println("sekon 11 :" + sekonTumbuh[10]);
+//                    System.out.println("sekon 11 :" + sekonTumbuh[10]);
                     sekonTumbuh[10]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[10] <= 20) {
@@ -1983,7 +2290,7 @@ public class UserController {
                         }
                     }
                 } else if (lahan == 12) {
-                    System.out.println("sekon 12 :" + sekonTumbuh[11]);
+//                    System.out.println("sekon 12 :" + sekonTumbuh[11]);
                     sekonTumbuh[11]--;
                     if (frame.equalsIgnoreCase("bermain1")) {
                         if (sekonTumbuh[11] <= 20) {
@@ -2103,17 +2410,69 @@ public class UserController {
 
     }
 
-    private class OkKotakMisteri1 implements MouseListener {
+    private class NextHegaListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            dialogHega.dispose();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class TutupBantuanMouseListenner implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            bantuan.dispose();
+            try {
+                new UserController(awal, userM);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+
+    private class OkKotakMisteri implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent me) {
-            level[0] = false;
-            level[1] = true;
             dialogKotakMisteri.dispose();
 
             try {
                 nextLevel();
-                UserController uc = UserController.getInstance(); 
+//                UserController uc = UserController.getInstance();
+                new UserController(mulai, userM);
             } catch (SQLException ex) {
                 Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -2285,6 +2644,7 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            System.out.println("bisa");
             beliBibit(3);
         }
 
@@ -2640,11 +3000,9 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (siram && pupuk == false) {
-                siram(12);
-            } else if (siram == false && pupuk) {
-                pupuk(12);
-            }
+            siram(12);
+            pupuk(12);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2670,6 +3028,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(11);
             pupuk(11);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2695,6 +3054,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(10);
             pupuk(10);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2720,6 +3080,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(9);
             pupuk(9);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2745,6 +3106,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(8);
             pupuk(8);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2770,6 +3132,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(7);
             pupuk(7);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2795,6 +3158,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(6);
             pupuk(6);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2820,6 +3184,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(5);
             pupuk(5);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2845,6 +3210,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(4);
             pupuk(4);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2870,6 +3236,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(3);
             pupuk(3);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2895,6 +3262,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(2);
             pupuk(2);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2919,7 +3287,8 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram(1);
-            pupuk(2);
+            pupuk(1);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2945,6 +3314,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(12);
             pupuk(12);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2971,6 +3341,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(11);
             pupuk(11);
+            System.out.println("bisa");
         }
 
         @Override
@@ -2996,6 +3367,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(10);
             pupuk(10);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3021,6 +3393,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(9);
             pupuk(9);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3046,6 +3419,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(8);
             pupuk(8);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3072,6 +3446,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(7);
             pupuk(7);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3097,6 +3472,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(6);
             pupuk(6);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3122,6 +3498,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(5);
             pupuk(5);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3147,6 +3524,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(4);
             pupuk(4);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3173,6 +3551,7 @@ public class UserController {
         public void mouseClicked(MouseEvent e) {
             siram(3);
             pupuk(3);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3196,11 +3575,9 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (siram && pupuk == false) {
-                siram(2);
-            } else if (siram == false && pupuk) {
-                pupuk(2);
-            };
+            siram(2);
+            pupuk(2);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3224,11 +3601,9 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (siram && pupuk == false) {
-                siram(1);
-            } else if (siram == false && pupuk) {
-                pupuk(1);
-            }
+            siram(1);
+            pupuk(1);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3253,6 +3628,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(12);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3277,6 +3653,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(11);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3301,6 +3678,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(10);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3325,6 +3703,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(9);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3349,6 +3728,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(8);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3373,6 +3753,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(7);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3397,6 +3778,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(6);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3421,6 +3803,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(5);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3445,6 +3828,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(4);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3469,6 +3853,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(3);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3493,6 +3878,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(2);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3517,6 +3903,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tebang(1);
+            System.out.println("bisa");
         }
 
         @Override
@@ -3576,153 +3963,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
                 bibit[0] -= 1;
-                if (kotakAktif[0] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[0] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[1] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 40;
-                        System.out.println("lama");
-                    } else {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[3] = 40;
-                    } else {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[3] = 1;
-                } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[4] = 40;
-                    } else {
-                        sekonTumbuh[4] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[4] = 1;
-                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon6(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon6_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[5] = 40;
-                    } else {
-                        sekonTumbuh[5] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[5] = 1;
-                } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon7(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon7_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[6] = 40;
-                    } else {
-                        sekonTumbuh[6] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[6] = 1;
-                } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon8(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon8_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[7] = 40;
-                    } else {
-                        sekonTumbuh[7] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[7] = 1;
-                } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon9(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon9_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[8] = 40;
-                    } else {
-                        sekonTumbuh[8] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[8] = 1;
-                } else if (kotakAktif[9] == 0 && bermain1.getButton_kotak10().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon10(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon10_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[9] = 40;
-                    } else {
-                        sekonTumbuh[9] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[9] = 1;
-                } else if (kotakAktif[10] == 0 && bermain1.getButton_kotak11().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon11(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon11_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[10] = 40;
-                    } else {
-                        sekonTumbuh[10] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[10] = 1;
-                } else if (kotakAktif[11] == 0 && bermain1.getButton_kotak12().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon12(), "/View/Pertumbuhan/pohon_karet1.png");
-                    setIconLabel(bermain1.getLabel_pohon12_2(), "/View/Pertumbuhan/pohon_karet3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[11] = 40;
-                    } else {
-                        sekonTumbuh[11] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[11] = 1;
-                } else {
-                    JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
-                }
+                pertumbuhan(2, "pohon_karet1.png", "pohon_karet3.png");
                 dialogAsset.dispose();
             }
         }
@@ -3752,155 +3993,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
                 bibit[4] -= 1;
-                if (kotakAktif[0] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[0] = 120;
-                        System.out.println("lama");
-                    } else {
-
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[1] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[2] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[3] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[3] = 1;
-                } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[4] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[4] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[4] = 1;
-                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon6(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon6_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[5] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[5] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[5] = 1;
-                } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon7(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon7_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[6] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[6] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[6] = 1;
-                } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon8(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon8_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[7] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[7] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[7] = 1;
-                } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon9(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon9_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[8] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[8] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[8] = 1;
-                } else if (kotakAktif[9] == 0 && bermain1.getButton_kotak10().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon10(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon10_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[9] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[9] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[9] = 1;
-                } else if (kotakAktif[10] == 0 && bermain1.getButton_kotak11().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon11(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon11_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[10] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[10] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[10] = 1;
-                } else if (kotakAktif[11] == 0 && bermain1.getButton_kotak12().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon12(), "/View/Pertumbuhan/pohon_pinus1.png");
-                    setIconLabel(bermain1.getLabel_pohon12_2(), "/View/Pertumbuhan/pohon_pinus3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[11] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[11] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[11] = 1;
-                } else {
-                    JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
-                }
-
+                pertumbuhan(2, "pohon_pinus1.png", "pohon_pinus3.png");
                 dialogAsset.dispose();
             }
         }
@@ -3934,153 +4027,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
                 bibit[1] -= 1;
-                if (kotakAktif[0] == 0 && bermain1.getButton_kotak1().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[0] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0 && bermain1.getButton_kotak2().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[1] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0 && bermain1.getButton_kotak3().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 40;
-                        System.out.println("lama");
-                    } else {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0 && bermain1.getButton_kotak4().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[3] = 40;
-                    } else {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[3] = 1;
-                } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[4] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[4] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[4] = 1;
-                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[5] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[5] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[5] = 1;
-                } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[6] = 40;
-                        System.out.println("lama");
-                    } else {
-                        sekonTumbuh[6] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[6] = 1;
-                } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[7] = 40;
-                    } else {
-                        sekonTumbuh[7] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[7] = 1;
-                } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[8] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[8] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[8] = 1;
-                } else if (kotakAktif[9] == 0 && bermain1.getButton_kotak10().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[9] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[9] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[9] = 1;
-                } else if (kotakAktif[10] == 0 && bermain1.getButton_kotak11().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[10] = 40;
-                        System.out.println("lama");
-                    } else {
-                        sekonTumbuh[10] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[10] = 1;
-                } else if (kotakAktif[11] == 0 && bermain1.getButton_kotak12().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_pilang1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_pilang3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[11] = 40;
-                    } else {
-                        sekonTumbuh[11] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[11] = 1;
-                } else {
-                    JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
-                }
+                pertumbuhan(1, "pohon_pilang1.png", "pohon_pilang3.png");
                 dialogAsset.dispose();
             }
         }
@@ -4110,153 +4057,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
                 bibit[5] -= 1;
-                if (kotakAktif[0] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[0] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[1] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[2] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[3] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[3] = 1;
-                } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[4] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[4] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[4] = 1;
-                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon6(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon6_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[5] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[5] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[5] = 1;
-                } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon7(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon7_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[6] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[6] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[6] = 1;
-                } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon6(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon6_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[7] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[7] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[7] = 1;
-                } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon9(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon9_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[8] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[8] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[8] = 1;
-                }else if (kotakAktif[9] == 0 && bermain1.getButton_kotak10().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon10(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon10_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[9] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[9] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[9] = 1;
-                } else if (kotakAktif[10] == 0 && bermain1.getButton_kotak11().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon10(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon10_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[10] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[10] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[10] = 1;
-                } else if (kotakAktif[11] == 0 && bermain1.getButton_kotak12().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon11(), "/View/Pertumbuhan/pohon_kayu_hitam1.png");
-                    setIconLabel(bermain1.getLabel_pohon11_2(), "/View/Pertumbuhan/pohon_kayu_hitam3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[11] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[11] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[11] = 1;
-                } else {
-                    JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
-                }
+                pertumbuhan(1, "pohon_kayu_hitam1.png", "pohon_kayu_hitam3.png");
                 dialogAsset.dispose();
             }
         }
@@ -4286,121 +4087,11 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (bibit[6] < 1) {
+            if (bibit[7] < 1) {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
-                bibit[6] -= 1;
-                if (kotakAktif[0] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 40;
-                    } else {
-                        System.out.println("lama");
-                        sekonTumbuh[0] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[1] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 40;
-                        System.out.println("lama");
-                    } else {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[3] = 40;
-                    } else {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[3] = 1;
-                } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[4] = 40;
-                    } else {
-                        sekonTumbuh[4] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[4] = 1;
-                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon6(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon6_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[5] = 40;
-                    } else {
-                        sekonTumbuh[5] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[5] = 1;
-                } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon7(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon7_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[6] = 40;
-                    } else {
-                        sekonTumbuh[6] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[6] = 1;
-                } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon8(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon8_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[7] = 40;
-                    } else {
-                        sekonTumbuh[7] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[7] = 1;
-                } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon9(), "/View/Pertumbuhan/pohon_kayu_besi1.png");
-                    setIconLabel(bermain1.getLabel_pohon9_2(), "/View/Pertumbuhan/pohon_kayu_besi3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[8] = 40;
-                    } else {
-                        sekonTumbuh[8] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[8] = 1;
-                } else {
-                    JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
-                }
+                bibit[7] -= 1;
+                pertumbuhan(1, "pohon_kayu_besi1.png", "pohon_kayu_besi3.png");
                 dialogAsset.dispose();
             }
         }
@@ -4430,57 +4121,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
                 bibit[3] -= 1;
-                if (kotakAktif[0] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_kapur1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[0] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_kapur1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[1] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_kapur1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[2] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_kapur1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[3] = 40;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[3] = 1;
-                } else {
-                    JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
-                }
+                pertumbuhan(1, "pohon_kapur1.png", "pohon_kapur3.png");
                 dialogAsset.dispose();
             }
         }
@@ -4510,83 +4151,7 @@ public class UserController {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
                 bibit[2] -= 1;
-                if (kotakAktif[0] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_cemara1.png");
-                    setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[0] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_cemara1.png");
-                    setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[1] = 40;
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 120;
-                    }
-                    tanam("bermain1");
-                    kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_cemara1.png");
-                    setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 40;
-                        System.out.println("lama");
-                    } else {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
-                    setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_cemara1.png");
-                    setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[3] = 40;
-                    } else {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[3] = 1;
-                }   else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/pohon_cemara1.png");
-                    setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[3] = 40;
-                    } else {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[4] = 1;
-                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
-                    setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/pohon_cemara1.png");
-                    setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/pohon_kapur3.png");
-                    if (hutan == 1) {
-                        System.out.println("lama");
-                        sekonTumbuh[3] = 40;
-                    } else {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("bentar");
-                    }
-                    tanam("bermain1");
-                    kotakAktif[5] = 1;
-                } 
-                
-                else {
-                    JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
-                }
+                pertumbuhan(2, "pohon_cemara1.png", "pohon_cemara3.png");
                 dialogAsset.dispose();
             }
         }
@@ -4612,58 +4177,94 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (bibit[7] < 1) {
+            if (bibit[6] < 1) {
                 JOptionPane.showMessageDialog(dialogAsset, "Bibit Tidak Cukup!!");
             } else {
-                bibit[7] -= 1;
-                if (kotakAktif[0] == 0) {
+                bibit[6] -= 1;
+                if (kotakAktif[0] == 0 && bermain1.getButton_kotak1().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon1(), "/View/Pertumbuhan/pohon_jati1.png");
                     setIconLabel(bermain1.getLabel_pohon1_2(), "/View/Pertumbuhan/pohon_jati3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[0] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[0] = 40;
-                    }
+                    System.out.println("bentar");
+                    sekonTumbuh[0] = 40;
                     tanam("bermain1");
                     kotakAktif[0] = 1;
-                } else if (kotakAktif[1] == 0) {
+                } else if (kotakAktif[1] == 0 && bermain1.getButton_kotak2().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon2(), "/View/Pertumbuhan/pohon_jati1.png");
                     setIconLabel(bermain1.getLabel_pohon2_2(), "/View/Pertumbuhan/pohon_jati3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[1] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[1] = 40;
-                    }
+                    System.out.println("bentar");
+                    sekonTumbuh[1] = 40;
                     tanam("bermain1");
                     kotakAktif[1] = 1;
-                } else if (kotakAktif[2] == 0) {
+                } else if (kotakAktif[2] == 0 && bermain1.getButton_kotak3().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon3(), "/View/Pertumbuhan/pohon_jati1.png");
                     setIconLabel(bermain1.getLabel_pohon3_2(), "/View/Pertumbuhan/pohon_jati3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[2] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[2] = 40;
-                    }
+                    System.out.println("bentar");
+                    sekonTumbuh[2] = 40;
                     tanam("bermain1");
                     kotakAktif[2] = 1;
-                } else if (kotakAktif[3] == 0) {
+                } else if (kotakAktif[3] == 0 && bermain1.getButton_kotak4().isEnabled()) {
                     setIconLabel(bermain1.getLabel_pohon4(), "/View/Pertumbuhan/pohon_jati1.png");
                     setIconLabel(bermain1.getLabel_pohon4_2(), "/View/Pertumbuhan/pohon_jati3.png");
-                    if (hutan == 1) {
-                        sekonTumbuh[3] = 120;
-                        System.out.println("lama");
-                    } else {
-                        System.out.println("bentar");
-                        sekonTumbuh[3] = 40;
-                    }
+                    System.out.println("bentar");
+                    sekonTumbuh[3] = 40;
                     tanam("bermain1");
                     kotakAktif[3] = 1;
+                } else if (kotakAktif[4] == 0 && bermain1.getButton_kotak5().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon5(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon5_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[4] = 40;
+                    tanam("bermain1");
+                    kotakAktif[4] = 1;
+                } else if (kotakAktif[5] == 0 && bermain1.getButton_kotak6().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon6(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon6_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[5] = 40;
+                    tanam("bermain1");
+                    kotakAktif[5] = 1;
+                } else if (kotakAktif[6] == 0 && bermain1.getButton_kotak7().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon7(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon7_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[6] = 40;
+                    tanam("bermain1");
+                    kotakAktif[6] = 1;
+                } else if (kotakAktif[7] == 0 && bermain1.getButton_kotak8().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon8(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon8_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[7] = 40;
+                    tanam("bermain1");
+                    kotakAktif[7] = 1;
+                } else if (kotakAktif[8] == 0 && bermain1.getButton_kotak9().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon9(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon9_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[8] = 40;
+                    tanam("bermain1");
+                    kotakAktif[8] = 1;
+                } else if (kotakAktif[9] == 0 && bermain1.getButton_kotak10().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon10(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon10_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[9] = 40;
+                    tanam("bermain1");
+                    kotakAktif[9] = 1;
+                } else if (kotakAktif[10] == 0 && bermain1.getButton_kotak11().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon11(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon11_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[10] = 40;
+                    tanam("bermain1");
+                    kotakAktif[10] = 1;
+                } else if (kotakAktif[11] == 0 && bermain1.getButton_kotak12().isEnabled()) {
+                    setIconLabel(bermain1.getLabel_pohon12(), "/View/Pertumbuhan/pohon_jati1.png");
+                    setIconLabel(bermain1.getLabel_pohon12_2(), "/View/Pertumbuhan/pohon_jati3.png");
+                    System.out.println("bentar");
+                    sekonTumbuh[11] = 40;
+                    tanam("bermain1");
+                    kotakAktif[11] = 1;
                 } else {
                     JOptionPane.showMessageDialog(dialogAsset, "Lahan Penuh");
                 }
@@ -4729,6 +4330,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             siram = true;
+            System.out.println("bisa");
         }
 
         @Override
@@ -4839,6 +4441,11 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            if (hutan == 1) {
+                bermain1.getLabel_hutan().setText("Hutan Hujan Tropis");
+            } else {
+                bermain1.getLabel_hutan().setText("Hutan Musim");
+            }
             nextLevel();
             try {
                 new UserController(bermain1, userM);
@@ -4871,6 +4478,7 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+
             dialogPilihHutan.dispose();
         }
 
@@ -4902,7 +4510,12 @@ public class UserController {
                 if (username.equals("")) {
                     JOptionPane.showMessageDialog(newGame, "Username TIdak Boleh Kosong!!!");
                 } else {
-                    userM.tambahUser(username);
+                    userM.cocokan(username);
+                    if (userM.getResult() < 1) {
+                        newGame.getButton_Lanjutkan().setEnabled(false);
+                    } else {
+                        newGame.getButton_Lanjutkan().setEnabled(true);
+                    }
                     dialogMasukkanNama.dispose();
                 }
 
@@ -4934,6 +4547,12 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            try {
+                newGame.dispose();
+                UserController uc = UserController.getInstance();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         @Override
@@ -4960,8 +4579,10 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             try {
-                UserController uc = UserController.getInstance();
                 newGame.dispose();
+                userM.reset(username);
+                UserController uc = UserController.getInstance();
+                dialogHega.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -5296,7 +4917,13 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            try {
 
+                new UserController(bantuan, userM);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            awal.dispose();
         }
 
         @Override

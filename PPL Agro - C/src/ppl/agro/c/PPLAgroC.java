@@ -1,9 +1,10 @@
 package ppl.agro.c;
 
+
 import Controller.UserController;
 import Model.UserModel;
 import View.AwalView;
-import View.BermainView;
+import View.Bermain1View;
 import View.MulaiView;
 import View.PopUpKeluarView;
 import java.sql.SQLException;
@@ -12,11 +13,12 @@ public class PPLAgroC {
 
     public static void main(String[] args) throws SQLException {
         AwalView awal = new AwalView();
-        BermainView bermain = new BermainView();
+        Bermain1View bermain1 = new Bermain1View();
         MulaiView mulai = new MulaiView();
         UserModel userM = new UserModel();
-        UserController uc = UserController.getInstance();
-
+        new UserController(awal, userM);
+//        UserController.getInstance();
+        
     }
 
 }

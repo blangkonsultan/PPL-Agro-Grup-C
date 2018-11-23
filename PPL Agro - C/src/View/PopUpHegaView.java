@@ -8,36 +8,34 @@ package View;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
  *
  * @author adheraprabu
  */
-public class PopUpKotakMisteri extends javax.swing.JDialog {
+public class PopUpHegaView extends javax.swing.JDialog {
 
     /**
-     * Creates new form PopUpAssetView
+     * Creates new form PopUpHegaView
      */
-    public PopUpKotakMisteri(java.awt.Frame parent, boolean modal) {
+    public PopUpHegaView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(this);
+        setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
     }
 
-    public void OKMouseListener(MouseListener l) {
-        this.Button_OK.addMouseListener(l);
+    public JButton getButton_Next() {
+        return Button_Next;
     }
 
-    public JButton getButton_ya() {
-        return Button_OK;
+    public void setButton_Next(JButton Button_Next) {
+        this.Button_Next = Button_Next;
     }
 
-    public void setButton_ya(JButton Button_ya) {
-        this.Button_OK = Button_OK;
-    }
-
+    public void NextMouseListener(MouseListener l) {
+        this.Button_Next.addMouseListener(l);
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,28 +45,26 @@ public class PopUpKotakMisteri extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Button_OK = new javax.swing.JButton();
+        Button_Next = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Button_OK.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        Button_OK.setForeground(new java.awt.Color(255, 255, 255));
-        Button_OK.setText("OK");
-        Button_OK.setContentAreaFilled(false);
-        getContentPane().add(Button_OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 650, 110, 40));
+        Button_Next.setText("Next");
+        getContentPane().add(Button_Next, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/KotakUI/KM_1.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 760));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/hega2.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button_OK;
+    private javax.swing.JButton Button_Next;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
