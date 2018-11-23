@@ -35,6 +35,7 @@ public class BantuanView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Button_tutup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Toko/tutup.png"))); // NOI18N

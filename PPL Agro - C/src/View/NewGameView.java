@@ -75,6 +75,7 @@ public class NewGameView extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Button_Lanjutkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/lanjut.png"))); // NOI18N

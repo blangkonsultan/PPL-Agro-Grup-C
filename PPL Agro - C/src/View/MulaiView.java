@@ -168,6 +168,7 @@ public class MulaiView extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PilihHutan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/MulaiUI/pilih_hutanmu.png"))); // NOI18N

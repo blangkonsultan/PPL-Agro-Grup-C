@@ -14,7 +14,6 @@ public class UserModel {
 
     public Koneksi koneksi;
     private int result = 0;
-    private static String idPemain;
     UserController uc;
 
     public UserModel() throws SQLException {
