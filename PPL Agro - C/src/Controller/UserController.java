@@ -74,7 +74,7 @@ public class UserController {
     static boolean misi[] = {false, false, false, false, false, false, false, false, false, false,};
     public static int air[] = {2, 0};// index pertama air saat ini, index kedua yg akan dibeli
     int hargaAir = 5;
-    int hargaPupuk = 15;
+    int hargaPupuk = 5;
     int bintang = 0;
     public static int pupuke[] = {2, 0};// index pertama pupuk saat ini, index kedua yg akan dibeli
     public static int bibit[] = {1, 1, 1, 1, 1, 1, 1, 1};//jumlah bibit tiap pohon
@@ -214,6 +214,9 @@ public class UserController {
         bermain1.getLabel_pohon11_2().setVisible(false);
         bermain1.getLabel_pohon12_2().setVisible(false);
         bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+
+        bermain1.getLabel_jmlAir().setText(Integer.toString(air[0]));
+        bermain1.getLabel_jmlPupuk().setText(Integer.toString(pupuke[0]));
 
         bermain1.KembaliMouseListener(new KembaliBermainMouseListener());
         bermain1.pupukMouseListener(new pupukListener());
@@ -472,6 +475,7 @@ public class UserController {
                 bibit[0] += 1;
                 uang -= 35;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonKaret().setText(Integer.toString(bibit[0]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
@@ -482,6 +486,7 @@ public class UserController {
                 bibit[1] += 1;
                 uang -= 40;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonPilang().setText(Integer.toString(bibit[1]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
@@ -492,6 +497,7 @@ public class UserController {
                 bibit[2] += 1;
                 uang -= 45;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonCemara().setText(Integer.toString(bibit[2]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
@@ -501,6 +507,7 @@ public class UserController {
             if (uang >= 50) {
                 bibit[3] += 1;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonKapur().setText(Integer.toString(bibit[3]));
             } else {
                 dialogUangKurang.setVisible(true);
@@ -510,6 +517,7 @@ public class UserController {
                 bibit[4] += 1;
                 uang -= 55;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonPinus().setText(Integer.toString(bibit[4]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
@@ -520,6 +528,7 @@ public class UserController {
                 bibit[5] += 1;
                 uang -= 60;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonKayuHitam().setText(Integer.toString(bibit[5]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
@@ -530,7 +539,7 @@ public class UserController {
                 bibit[6] += 1;
                 uang -= 80;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
-
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonJati().setText(Integer.toString(bibit[6]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
@@ -541,6 +550,7 @@ public class UserController {
                 bibit[7] += 1;
                 uang -= 75;
                 bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+                dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
                 dialogAsset.getLabel_jmlPohonKayuBesi().setText(Integer.toString(bibit[7]));
                 JOptionPane.showMessageDialog(tokoBibit, "Bibit Berhasil Dibeli!");
             } else {
@@ -560,6 +570,7 @@ public class UserController {
             JOptionPane.showMessageDialog(tokoAir, "Berhasil Membeli Air");
             tokoAir.getLabel_jmlBeliAir().setText(Integer.toString(air[1]));
             bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+            dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
         } else {
             dialogUangKurang.setVisible(true);
             air[1] = 0;
@@ -578,6 +589,7 @@ public class UserController {
             JOptionPane.showMessageDialog(tokoPupuk, "Berhasil Membeli Pupuk");
             tokoPupuk.getLabel_jmlBeliPupuk().setText(Integer.toString(pupuke[1]));
             bermain1.getLabel_jmlUang().setText(Integer.toString(uang));
+            dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
         } else {
             dialogUangKurang.setVisible(true);
             pupuke[1] = 0;
@@ -591,6 +603,8 @@ public class UserController {
             if (air[0] > 0) {
                 System.out.println("siram");
                 air[0] -= 1;
+                bermain1.getLabel_jmlAir().setText(Integer.toString(air[0]));
+
                 if (lahan == 1) {
                     sekonTumbuh[0] -= 15;
                     System.out.println("waktu lahan 1 berkurang 15 detik");
@@ -674,6 +688,7 @@ public class UserController {
             if (pupuke[0] > 0) {
                 System.out.println("pupuk");
                 pupuke[0] -= 1;
+                bermain1.getLabel_jmlPupuk().setText(Integer.toString(pupuke[0]));
                 if (lahan == 1) {
                     sekonTumbuh[0] -= 15;
                     System.out.println("waktu lahan 1 berkurang 15 detik");
@@ -2732,7 +2747,7 @@ public class UserController {
         @Override
         public void mouseClicked(MouseEvent e) {
             System.out.println("bisa");
-            beliBibit(3);
+            beliBibit(2);
         }
 
         @Override
@@ -4014,6 +4029,7 @@ public class UserController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            dialogToko.getLabel_jmlUang().setText(Integer.toString(uang));
             setIcon(dialogToko.getButton_Air(), "/View/Toko/air_select.png");
             tokoAir.getLabel_jmlBeliAir().setText(Integer.toString(air[1]));
             dialogToko.getDynamicPanel().setVisible(true);

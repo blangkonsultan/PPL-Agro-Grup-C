@@ -46,6 +46,22 @@ public class Bermain1View extends javax.swing.JFrame {
         this.Button_kotak3.addMouseListener(l);
     }
 
+    public JLabel getLabel_jmlAir() {
+        return Label_jmlAir;
+    }
+
+    public void setLabel_jmlAir(JLabel Label_jmlAir) {
+        this.Label_jmlAir = Label_jmlAir;
+    }
+
+    public JLabel getLabel_jmlPupuk() {
+        return Label_jmlPupuk;
+    }
+
+    public void setLabel_jmlPupuk(JLabel Label_jmlPupuk) {
+        this.Label_jmlPupuk = Label_jmlPupuk;
+    }
+
     public void kotak4MouseListener(MouseListener l) {
         this.Button_kotak4.addMouseListener(l);
     }
@@ -768,6 +784,8 @@ public class Bermain1View extends javax.swing.JFrame {
     private void initComponents() {
 
         Label_bintangDasar = new javax.swing.JLabel();
+        Label_jmlAir = new javax.swing.JLabel();
+        Label_jmlPupuk = new javax.swing.JLabel();
         Label_bintang = new javax.swing.JLabel();
         Label_hitam = new javax.swing.JLabel();
         bintangKecil = new javax.swing.JLabel();
@@ -837,7 +855,6 @@ public class Bermain1View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Label_bintangDasar.setBackground(new java.awt.Color(0, 0, 0));
@@ -847,6 +864,10 @@ public class Bermain1View extends javax.swing.JFrame {
         Label_bintangDasar.setText("/ 2");
         Label_bintangDasar.setOpaque(true);
         getContentPane().add(Label_bintangDasar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 30, 50, 30));
+        getContentPane().add(Label_jmlAir, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 730, 30, 20));
+
+        Label_jmlPupuk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(Label_jmlPupuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 730, 30, 20));
 
         Label_bintang.setBackground(new java.awt.Color(0, 0, 0));
         Label_bintang.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
@@ -1315,6 +1336,8 @@ public class Bermain1View extends javax.swing.JFrame {
     private javax.swing.JLabel Label_bintangDasar;
     private javax.swing.JLabel Label_hitam;
     private javax.swing.JLabel Label_hutan;
+    private javax.swing.JLabel Label_jmlAir;
+    private javax.swing.JLabel Label_jmlPupuk;
     private javax.swing.JLabel Label_jmlUang;
     private javax.swing.JLabel Label_level;
     private javax.swing.JLabel Label_pohon1;

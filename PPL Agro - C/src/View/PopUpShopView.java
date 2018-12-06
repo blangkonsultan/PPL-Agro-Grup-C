@@ -25,6 +25,15 @@ public class PopUpShopView extends javax.swing.JDialog {
         setLocationRelativeTo(this);
     }
 
+    public JLabel getLabel_jmlUang() {
+        return Label_jmlUang;
+    }
+
+    public void setLabel_jmlUang(JLabel Label_jmlUang) {
+        this.Label_jmlUang = Label_jmlUang;
+    }
+    
+    
     public void AirMouseListener(MouseListener l) {
         this.Button_Air.addMouseListener(l);
     }
@@ -130,6 +139,9 @@ public class PopUpShopView extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Label_jmlUang = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         DynamicPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         Button_Close = new javax.swing.JButton();
@@ -145,6 +157,18 @@ public class PopUpShopView extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Label_jmlUang.setFont(new java.awt.Font("Niagara Engraved", 1, 48)); // NOI18N
+        Label_jmlUang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Label_jmlUang.setToolTipText("");
+        getContentPane().add(Label_jmlUang, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 170, 50));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/kotak_uang.png"))); // NOI18N
+        jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Lahan/dollar.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
 
         DynamicPanel.setOpaque(false);
         DynamicPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -214,11 +238,14 @@ public class PopUpShopView extends javax.swing.JDialog {
     private javax.swing.JButton Button_Close;
     private javax.swing.JButton Button_Pupuk;
     private javax.swing.JPanel DynamicPanel;
+    private javax.swing.JLabel Label_jmlUang;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel bg2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

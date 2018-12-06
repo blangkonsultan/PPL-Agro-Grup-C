@@ -108,6 +108,7 @@ public class PanelTokoPupukView extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -148,6 +149,10 @@ public class PanelTokoPupukView extends javax.swing.JPanel {
 
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 480));
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 36)); // NOI18N
+        jLabel3.setText("5 Koin");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -158,6 +163,7 @@ public class PanelTokoPupukView extends javax.swing.JPanel {
     private javax.swing.JLabel Label_jmlBeliPupuk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

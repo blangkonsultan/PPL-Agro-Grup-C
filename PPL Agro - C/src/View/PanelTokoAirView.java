@@ -117,6 +117,7 @@ public class PanelTokoAirView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         Button_tambah = new javax.swing.JButton();
         Button_kurang = new javax.swing.JButton();
         Button_beli = new javax.swing.JButton();
@@ -127,6 +128,10 @@ public class PanelTokoAirView extends javax.swing.JPanel {
 
         setOpaque(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 36)); // NOI18N
+        jLabel3.setText("5 Koin");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 120, -1));
 
         Button_tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Toko/plus1.png"))); // NOI18N
         Button_tambah.setBorderPainted(false);
@@ -182,6 +187,7 @@ public class PanelTokoAirView extends javax.swing.JPanel {
     private javax.swing.JLabel Label_jmlBeliAir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
